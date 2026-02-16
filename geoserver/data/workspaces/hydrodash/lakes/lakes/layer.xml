@@ -1,0 +1,16 @@
+<layer>
+  <name>lakes</name>
+  <id>LayerInfoImpl-52517894:1970aee4985:-2ae7</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-52517894:1970aee4985:-5bb2</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-52517894:1970aee4985:-2ae8</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-08-11 14:01:15.942 UTC</dateCreated>
+</layer>

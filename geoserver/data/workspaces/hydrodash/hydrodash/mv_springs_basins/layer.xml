@@ -1,0 +1,16 @@
+<layer>
+  <name>mv_springs_basins</name>
+  <id>LayerInfoImpl--54774199:1996065db24:-61d6</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-21393e19:199574d007f:-7e89</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--54774199:1996065db24:-61d7</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-09-19 09:20:50.293 UTC</dateCreated>
+</layer>

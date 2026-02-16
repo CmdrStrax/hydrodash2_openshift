@@ -1,0 +1,16 @@
+<layer>
+  <name>mv_precip</name>
+  <id>LayerInfoImpl-6e1408de:199372386a3:-7786</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-37b18cc6:14d5d036d48:-8000</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-6e1408de:199372386a3:-7787</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-09-11 07:06:41.311 UTC</dateCreated>
+</layer>

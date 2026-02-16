@@ -1,0 +1,16 @@
+<layer>
+  <name>srtm_hs_wgs84</name>
+  <id>LayerInfoImpl-52517894:1970aee4985:-27b4</id>
+  <type>RASTER</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fe2</id>
+  </defaultStyle>
+  <resource class="coverage">
+    <id>CoverageInfoImpl-52517894:1970aee4985:-27b5</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-08-11 14:33:02.916 UTC</dateCreated>
+</layer>

@@ -1,0 +1,17 @@
+<layer>
+  <name>mv_discharge</name>
+  <id>LayerInfoImpl--25d3aae:1990e658114:-7ffe</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--61c611db:1990ebe981a:-7fff</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--25d3aae:1990e658114:-7fff</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-09-03 07:17:01.654 UTC</dateCreated>
+  <dateModified>2025-09-11 05:24:13.301 UTC</dateModified>
+</layer>

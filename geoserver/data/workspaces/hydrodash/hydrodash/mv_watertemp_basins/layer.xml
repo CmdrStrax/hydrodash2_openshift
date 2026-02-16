@@ -1,0 +1,16 @@
+<layer>
+  <name>mv_watertemp_basins</name>
+  <id>LayerInfoImpl--54774199:1996065db24:-65fd</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--54774199:1996065db24:-6601</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--54774199:1996065db24:-65fe</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-09-19 09:11:10.21 UTC</dateCreated>
+</layer>

@@ -1,0 +1,17 @@
+<layer>
+  <name>mv_discharge_basins</name>
+  <id>LayerInfoImpl--b4b5a87:1995b35f167:-7be9</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-21393e19:199574d007f:-7e89</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--b4b5a87:1995b35f167:-7bea</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-09-18 07:34:29.490 UTC</dateCreated>
+  <dateModified>2025-09-19 06:30:39.293 UTC</dateModified>
+</layer>

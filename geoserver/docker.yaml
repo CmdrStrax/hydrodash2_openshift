@@ -1,0 +1,8 @@
+  geoserver:
+    container_name: hydrodash2-geoserver
+    image: docker.osgeo.org/geoserver:2.28.x
+    environment:
+      GEOSERVER_ADMIN_USER: geoserver
+      GEOSERVER_ADMIN_PASSWORD: geoserver
+    ports:
+      - 8081:8080

@@ -1,0 +1,14 @@
+<coverageStore>
+  <id>CoverageStoreInfoImpl-52517894:1970aee4985:-27b6</id>
+  <name>hs</name>
+  <type>GeoTIFF</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl-52517894:1970aee4985:-657d</id>
+  </workspace>
+  <__default>false</__default>
+  <dateCreated>2025-08-11 14:32:46.613 UTC</dateCreated>
+  <dateModified>2025-08-25 06:39:13.100 UTC</dateModified>
+  <disableOnConnFailure>false</disableOnConnFailure>
+  <url>file:data/hydrodash/srtm_hs_wgs84.tif</url>
+</coverageStore>

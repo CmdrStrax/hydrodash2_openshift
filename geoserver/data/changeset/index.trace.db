@@ -1,0 +1,4 @@
+11-06 15:00:38 jdbc[2]: SQLException
+org.h2.jdbc.JdbcSQLException: Tabelle _GEODB nicht gefunden
+Table _GEODB not found; SQL statement:
+SELECT checksum FROM _GEODB [42102-119]

@@ -1,0 +1,150 @@
+.content {
+    min-height: calc(100vh - 120px);
+}
+.u-axis {
+    font-weight: normal;
+}
+.u-legend th {
+    font-weight: 400;
+}
+.table-condensed { 
+    font-size: 14px !important; 
+}
+.card-header { 
+    font-size: 14px !important; 
+}
+.plot {
+    width: 100%;
+}
+#map { 
+    border-top-style: solid; 
+    border-top-color: rgb(178, 178, 178); 
+    border-top-width: 1px; 
+    border-bottom-style: solid; 
+    border-bottom-color: rgba(178, 178, 178); 
+    border-bottom-width: 1px; 
+}
+.sidebar {
+    background-color: #323639; 
+    box-shadow: 0px 3px 8px #323639; 
+    border-top: 1px grey solid; 
+    border-bottom: 1px grey solid;
+    clip-path: inset(0px -15px 0px 0px);
+}
+.sidebar_admin {
+    background-color: #323639; 
+    box-shadow: 0px 3px 8px #323639; 
+    border-top: 1px grey solid; 
+    border-bottom: 1px grey solid;
+    clip-path: inset(0px -15px 0px 0px);
+}
+.sidebar svg:hover {
+    fill: white;
+}
+.sidebar_admin svg:hover {
+    fill: white;
+}
+.sidebar li {
+    width: 48px;
+    margin-bottom: 0.75em;
+    padding-left: 15px;
+}
+.legend {
+    padding: 6px 12px;
+    font-family: var(--bs-font-sans-serif);
+    font-size: 12px;
+    background: white;
+    background: rgba(255, 255, 255, 0.6);
+    line-height: 24px;
+    color: #000;
+}
+.legend h4 {
+    text-align: left;
+    font-size: 12px;
+    margin: 0 8px 0 0;
+    color: #000;
+}
+.legend span {
+    position: relative;
+    bottom: 3px;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin: 0 8px 0 0;
+    opacity: 1;
+}
+.legend i.icon {
+    background-size: 18px;
+    background-color: rgba(255, 255, 255, 1);
+}
+.my-leaflet-main-popup-content {
+    cursor: pointer;
+    pointer-events: none !important;
+}
+.leaflet-popup-tip {
+    cursor: pointer;
+    pointer-events: none !important;
+    width: 0px;
+    height: 0px;
+}
+.leaflet-tooltip-own { 
+    background: rgba(0,0,0,0); 
+    border-color: rgba(0,0,0,0); 
+    border-bottom: rgba(0,0,0,0); 
+    box-shadow: none; 
+    color: "green"; 
+}
+.leaflet-popup-tip {
+    background: rgba(0, 0, 0, 0) !important;
+    box-shadow: none !important;
+}
+.leaflet-basin-overview {
+    text-align: center;
+    vertical-align: middle;
+    font-family: sans-serif;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
+}
+.btn_map label {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+}
+.btn_map input[type="radio"]:checked+label {
+    background-color: #0d6efd !important;
+}
+.btn_map input[type="checkbox"]:checked+label {
+    background-color: #198754 !important;
+}
+.admin_content {
+    min-height: calc(100vh - 128px);
+    padding-top: 1em;
+    padding-bottom: 1.5em;
+}
+.map_title {
+    position: absolute;
+    z-index: 9999;
+    left: 54px;
+    top: 15px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 5px;
+}
+.my_math {
+    font-family: Monospace;
+    font-size: 0.8rem;
+}
+.my_math mo {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+.my_math mrow {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}

@@ -1,0 +1,17 @@
+<layer>
+  <name>mv_groundwater</name>
+  <id>LayerInfoImpl-6e1408de:199372386a3:-6bd2</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-37b18cc6:14d5d036d48:-8000</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-6e1408de:199372386a3:-6bd3</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2025-09-11 09:18:30.516 UTC</dateCreated>
+  <dateModified>2025-12-04 08:45:42.202 UTC</dateModified>
+</layer>
