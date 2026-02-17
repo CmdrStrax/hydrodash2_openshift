@@ -14,11 +14,20 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      matrix:
+        service: [php_oc]
+
     steps:
     - uses: actions/checkout@v4
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
+      working-directory: php_oc
 
     - name: Cache Composer packages
       id: composer-cache
@@ -31,7 +40,8 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
-
+      working-directory: php_oc
+      
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
