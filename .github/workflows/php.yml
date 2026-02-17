@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+strategy:
+  matrix:
+    service: [php_oc]
+
 permissions:
   contents: read
 
