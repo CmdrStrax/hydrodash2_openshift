@@ -137,6 +137,28 @@
         -->
     </filter>
 
+  <context-param>
+       <param-name>GEOSERVER_CSRF_WHITELIST</param-name>
+       <param-value>geoserver.apps.okd.akldom01.at</param-value>
+  </context-param> 
+
+  <filter>
+      <filter-name>cross-origin</filter-name>
+      <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+      <init-param>
+         <param-name>cors.allowed.origins</param-name>
+         <param-value>*</param-value>
+     </init-param>
+     <init-param>
+         <param-name>cors.allowed.methods</param-name>
+         <param-value>GET,POST,PUT,DELETE,HEAD,OPTIONS</param-value>
+     </init-param>
+     <init-param>
+         <param-name>cors.allowed.headers</param-name>
+         <param-value>*</param-value>
+     </init-param>
+ </filter>
+
     <!-- Uncomment following filter to enable CORS in Jetty. Do not forget the second config block further down. -->
     <!--    
     <filter>
