@@ -34,9 +34,9 @@ RUN composer require codeigniter4/shield
 RUN composer install
 RUN php spark migrate --all
 
-RUN service apache2 restart
-
 RUN chgrp -R 0 /var/run/apache2 && chmod -R g=u /var/run/apache2
 RUN chgrp -R 0 /run/apache2 && chmod -R g=u /run/apache2
 RUN chgrp -R 0 /run/apache2/apache2.pid && chmod -R g=u /run/apache2/apache2.pid
+
+RUN service apache2 restart
 
