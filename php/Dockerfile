@@ -29,8 +29,8 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # 5. App kopieren und Berechtigungen setzen
 
-COPY app /var/www/app/
-WORKDIR /var/www/app/
+COPY app /var/www/html/
+WORKDIR /var/www/html/
 
 # WICHTIG: OpenShift benötigt Schreibrechte für die Root-Gruppe in diesen Verzeichnissen
 RUN chgrp -R 0 /var/www/app /var/run/apache2 /var/lock/apache2 /var/log/apache2 \
