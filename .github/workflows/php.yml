@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-strategy:
-  matrix:
-    service: [php_oc]
-
 permissions:
   contents: read
 
@@ -17,6 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        service: [php_oc]
 
     steps:
     - uses: actions/checkout@v4
