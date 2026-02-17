@@ -26,9 +26,9 @@ jobs:
       - name: Build image
         run: |
           docker build \
-            -t ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:latest \
+            -t ghcr.io/${{ github.repository_owner | lower }}/${{ matrix.service }}:latest \
             ./${{ matrix.service }}
 
       - name: Push image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/${{ matrix.service }}:latest
+          docker push ghcr.io/${{ github.repository_owner | lower }}/${{ matrix.service }}:latest
