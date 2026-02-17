@@ -29,12 +29,15 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # 5. App kopieren und Berechtigungen setzen
 
+RUN chgrp -R 0 /var/www/html /var/run/apache2 /var/lock/apache2 /var/log/apache2 \
+    && chmod -R g=u /var/www/html /var/run/apache2 /var/lock/apache2 /var/log/apache2
+
 COPY app /var/www/html/
 WORKDIR /var/www/html/
 
 # WICHTIG: OpenShift benötigt Schreibrechte für die Root-Gruppe in diesen Verzeichnissen
-RUN chgrp -R 0 /var/www/app /var/run/apache2 /var/lock/apache2 /var/log/apache2 \
-    && chmod -R g=u /var/www/app /var/run/apache2 /var/lock/apache2 /var/log/apache2
+RUN chgrp -R 0 /var/www/html /var/run/apache2 /var/lock/apache2 /var/log/apache2 \
+    && chmod -R g=u /var/www/html /var/run/apache2 /var/lock/apache2 /var/log/apache2
 
 # Composer-Befehle (Migrate sollte idealerweise im Entrypoint oder Deployment-Hook laufen, nicht im Build)
 RUN composer install --no-interaction --optimize-autoloader
