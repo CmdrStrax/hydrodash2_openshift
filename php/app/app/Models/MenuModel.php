@@ -22,7 +22,6 @@ class MenuModel extends Model
         array("Einzugsgebiete", "admin/catchment", "table"),
         array("-", "", ""),
         array("Jobs", "admin/jobs", "jobs"),
-        array("Logs", "admin/logs", "logs"),
         array("Materialized Views", "admin/mv", "table"),
         array("-", "", ""),
         array("Benutzerverwaltung", "admin/usermgt", "users"),
