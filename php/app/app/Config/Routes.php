@@ -4,6 +4,7 @@ use CodeIgniter\Router\RouteCollection;
 use App\Controllers\Hydrodash;
 use App\Controllers\Admin;
 use App\Controllers\UserMgt;
+use App\Controllers\ApiSync;
 
 
 
@@ -91,5 +92,23 @@ $routes->post('admin/usermgt/new', [UserMgt::class, 'user_mgt_new_post']);
 $routes->get('admin/usermgt/update/(:num)', [UserMgt::class, 'user_mgt_update']);
 $routes->get('admin/usermgt/delete/(:num)', [UserMgt::class, 'user_mgt_delete']);
 $routes->post('admin/usermgt/update/', [UserMgt::class, 'user_mgt_update_post']);
+
+//
+// Sync API
+//
+
+$routes->get('api_sync/api_get_analyses', [ApiSync::class, 'api_get_analyses']);
+$routes->get('api_sync/api_get_analysis_per_ds', [ApiSync::class, 'api_get_analysis_per_ds']);
+$routes->get('api_sync/api_get_categories', [ApiSync::class, 'api_get_categories']);
+$routes->get('api_sync/api_get_ds', [ApiSync::class, 'api_get_ds']);
+$routes->get('api_sync/api_get_jobs', [ApiSync::class, 'api_get_jobs']);
+$routes->get('api_sync/api_get_stammdat', [ApiSync::class, 'api_get_stammdat']);
+$routes->get('api_sync/api_get_ts', [ApiSync::class, 'api_get_ts']);
+$routes->post('api_sync/api_post_archive_ds_jobs', [ApiSync::class, 'api_post_archive_ds_jobs']);
+$routes->post('api_sync/api_post_comment', [ApiSync::class, 'api_post_comment']);
+$routes->post('api_sync/api_post_results', [ApiSync::class, 'api_post_results']);
+$routes->post('api_sync/api_post_stammdat', [ApiSync::class, 'api_post_stammdat']);
+$routes->post('api_sync/api_post_ts', [ApiSync::class, 'api_post_ts']);
+
 
 service('auth')->routes($routes);

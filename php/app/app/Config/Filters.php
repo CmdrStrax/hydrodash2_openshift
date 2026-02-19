@@ -69,6 +69,7 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
+            //'csrf' => ['except' => [  'api_sync/*', ]],
             'session' => ['except' => [
                 'login*', 
                 'auth/a/*', 
@@ -83,9 +84,10 @@ class Filters extends BaseFilters
                 'info',
                 'impressum',
                 'datenschutz',
+		'api_sync/*',
                 ]],
             // 'honeypot',
-            // 'csrf',
+            //'csrf' => ['except' => [  'api_sync/*', ]],
             // 'invalidchars',
         ],
         'after' => [
@@ -108,7 +110,7 @@ class Filters extends BaseFilters
      * @var array<string, list<string>>
      */
     public array $methods = [
-        'POST' => ['csrf'],
+        //'POST' => ['csrf'  => ['except' => [  'api_sync/*', ]]],
     ];
 
     /**
