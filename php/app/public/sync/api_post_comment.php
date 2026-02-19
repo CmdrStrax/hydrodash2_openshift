@@ -58,5 +58,5 @@ try {
 
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(["error" => "Serverfehler"]);
+    echo json_encode(["error" => "Serverfehler", "message" => $e->getMessage()]);
 }

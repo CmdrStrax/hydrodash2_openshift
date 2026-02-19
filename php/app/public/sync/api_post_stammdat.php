@@ -24,7 +24,7 @@ try {
     $db_database = getenv('POSTGRES_DB');
     $db_port = getenv('POSTGRES_PORT');
 
-    $pdo = new PDO(
+    $pdo_main = new PDO(
         "pgsql:host=" . $db_host . ";port=" . $db_port . ";dbname=" . $db_database,
         $db_user,
         $db_password,
@@ -147,5 +147,8 @@ try {
     }
 
     http_response_code(500);
-    echo json_encode(["error" => "Serverfehler" . $e->getMessage() ]);
+    echo json_encode([
+        "error" => "Serverfehler", 
+        "message" => $e->getMessage()
+    ]);
 }
