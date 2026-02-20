@@ -110,5 +110,4 @@ $routes->post('api_sync/api_post_results', [ApiSync::class, 'api_post_results'])
 $routes->post('api_sync/api_post_stammdat', [ApiSync::class, 'api_post_stammdat']);
 $routes->post('api_sync/api_post_ts', [ApiSync::class, 'api_post_ts']);
 
-
 service('auth')->routes($routes);
