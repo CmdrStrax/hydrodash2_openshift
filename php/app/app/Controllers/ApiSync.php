@@ -721,4 +721,59 @@ class ApiSync extends BaseController
             return $this->failServerError($e->getMessage());
         }
     }
+
+    public function refresh_mv(String $mv = null)
+    {
+        $db = db_connect();
+        $adminmsg = "";
+
+        try {
+            $db->transException(true)->transStart();
+            $db->query('REFRESH MATERIALIZED VIEW "mv_' . $mv . '"');
+            $db->transComplete();
+
+            $adminmsg = "Refreshed Materialized View \"mv_" . $mv . "\"";            
+        } catch (DatabaseException $e) {
+            $msg = $e->getMessage();
+
+            if (str_contains($msg, 'does not exist')) {
+                $adminmsg = "Materalized View \"" . $mv . "\" existiert nicht.";
+            } else {
+                $adminmsg = "Fehler in Transaktion (PG: " . $msg . ")";
+            }
+        }
+
+        return $this->respond(['msg'   => $adminmsg]);
+    }
+
+    public function refresh_mv_all()
+    {
+        $db = db_connect();
+
+        $msg = "";
+
+        try {
+            $db->transException(true)->transStart();
+            $db->query('REFRESH MATERIALIZED VIEW "mv_discharge"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_discharge_basins"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_watertemp"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_watertemp_basins"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_airtemp"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_airtemp_basins"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_precip"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_precip_basins"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_groundwater"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_groundwater_basins"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_springs"');
+            $db->query('REFRESH MATERIALIZED VIEW "mv_springs_basins"');
+
+            $db->transComplete();
+            
+            $msg = "Success";
+        } catch (DatabaseException $e) {
+            $msg = $e->getMessage();
+        }
+
+        return $this->respond(['msg'   => $msg]);
+    }
 }

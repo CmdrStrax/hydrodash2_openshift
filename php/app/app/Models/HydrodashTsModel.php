@@ -16,6 +16,6 @@ class HydrodashTsModel extends Model
         }
 
         $this->select('cat_id, dt, EXTRACT (EPOCH FROM dt) as dt_epoch, val');
-        return $this->where(['ds_id' => $id])->where('dt <= current_date')->orderBy('cat_id ASC, dt ASC')->findAll();
+        return $this->where(['ds_id' => $id])->where('dt <= now()')->orderBy('cat_id ASC, dt ASC')->findAll();
     }
 }

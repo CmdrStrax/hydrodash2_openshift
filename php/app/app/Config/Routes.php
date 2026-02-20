@@ -109,5 +109,7 @@ $routes->post('api_sync/api_post_comment', [ApiSync::class, 'api_post_comment'])
 $routes->post('api_sync/api_post_results', [ApiSync::class, 'api_post_results']);
 $routes->post('api_sync/api_post_stammdat', [ApiSync::class, 'api_post_stammdat']);
 $routes->post('api_sync/api_post_ts', [ApiSync::class, 'api_post_ts']);
+$routes->get('api_sync/mv/refreshall', [ApiSync::class, 'refresh_mv_all']);
+$routes->get('api_sync/mv/refresh/(:segment)', [ApiSync::class, 'refresh_mv']);
 
 service('auth')->routes($routes);

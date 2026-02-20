@@ -1595,7 +1595,7 @@ class Hydrodash extends BaseController
         $first_max = true;
         $first_max_val = 0;
 
-        $now = time();
+        $now = time() + 3600;
 
         $cumu_min = 0;
         $cumu_mean = 0;
@@ -1749,7 +1749,7 @@ class Hydrodash extends BaseController
                     }
                 }
 
-                if ($t['dt_epoch'] < $now) { 
+                if ($t['dt_epoch'] <= $now) { 
                     $cumu_ty += floatval($ty_val); 
 
                     array_push($ts_ty, $cumu_ty);
