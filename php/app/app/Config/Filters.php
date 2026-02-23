@@ -84,7 +84,6 @@ class Filters extends BaseFilters
                 'info',
                 'impressum',
                 'datenschutz',
-                'admin/mv/*',
         		'api_sync/*',
                 ]],
             // 'honeypot',

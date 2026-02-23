@@ -2825,39 +2825,4 @@ class Hydrodash extends BaseController
             . view('templates/footer');
     }
 
-    public function imprint()
-    {   
-        $data['title'] = 'Impressum';
-
-        $model_menu = model(MenuModel::class); 
-        $model_ds = model(HydrodashMvDischargeModel::class);
-
-        $data['ds'] = $model_ds->getEntries();
-        $data['menu'] = $model_menu->getMenu('');
-        $data['sub'] = '';
-
-        return view('templates/header', $data)
-            . view('templates/menu')
-            . 'Huhu'
-            . view('templates/footer');
-    }
-
-    public function privacy()
-    {   
-        $data['title'] = 'Datenschutz';
-
-        $model_menu = model(MenuModel::class); 
-        $model_ds = model(HydrodashMvDischargeModel::class);
-
-        $data['ds'] = $model_ds->getEntries();
-        $data['menu'] = $model_menu->getMenu('');
-        $data['sub'] = '';
-
-        return view('templates/header', $data)
-            . view('templates/menu')
-            . 'Moinmoin'
-            . view('templates/footer');
-    }
-
-
 }

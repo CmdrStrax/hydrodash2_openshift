@@ -180,7 +180,7 @@ $my_a5 = get_col_station_precip($a5["val"], $a5["val_lt"], $a5["from"], $a5["to"
         value: "{DD}.{MM}.{YYYY}"
       },
       {
-        label: "Minimales Tagesmittel",
+        label: "Minimale Niederschlagssumme",
         stroke: "#279EE6",
         width: 0.5,
         points: { 
@@ -188,7 +188,7 @@ $my_a5 = get_col_station_precip($a5["val"], $a5["val_lt"], $a5["from"], $a5["to"
         } 
       },
       {
-        label: "Mittleres Tagesmittel",
+        label: "Mittlere Niederschlagssumme",
         stroke: "#279EE6",
         width: 0.6,
         points: { 
@@ -196,7 +196,7 @@ $my_a5 = get_col_station_precip($a5["val"], $a5["val_lt"], $a5["from"], $a5["to"
         } 
       },
       {
-        label: "Maximales Tagesmittel",
+        label: "Maximale Niederschlagssumme",
         stroke: "#279EE6",
         width: 0.4,
         points: { 
@@ -204,12 +204,12 @@ $my_a5 = get_col_station_precip($a5["val"], $a5["val_lt"], $a5["from"], $a5["to"
         } 
       },              
       {
-        label: "Tagesmittel <?php echo $last_year; ?>",
+        label: "Niederschlagssumme <?php echo $last_year; ?>",
         stroke: "#f76f6f",    
         width: 1.2,
       },
       {
-        label: "Tagesmittel <?php echo $this_year; ?>",
+        label: "Niederschlagssumme <?php echo $this_year; ?>",
         stroke: "red",
         width: 1.6,
       },

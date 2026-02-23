@@ -844,11 +844,11 @@ function setAnalysis(id) {
     map.removeLayer(fg_res_ty);
     map.removeLayer(fg_res_ly);
 
-    document.getElementById('map_title').innerHTML = "<b>Niederschlag - Abweichung 30-Tage <small>[%]</small></b> <small class=\"text-secondary\" style=\"margin-left: 5px;\">(Mittel vom " + 
+    document.getElementById('map_title').innerHTML = "<b>Niederschlag - Abweichung 30-Tage <small>[%]</small></b> <small class=\"text-secondary\" style=\"margin-left: 5px;\">(Summe vom " + 
       d_a1_1.getDate() + "." + (d_a1_1.getMonth()+1) + ". bis " + 
       d_a1_2.getDate() + "." + (d_a1_2.getMonth()+1) + '.' + d_a1_2.getFullYear() + " im Vergleich zum Zeitabschnitt  " + 
       d_a1_1.getDate() + "." + (d_a1_1.getMonth()+1) + ".  bis " + 
-      d_a1_2.getDate() + "." + (d_a1_2.getMonth()+1) + ". des langjährigen Mittels)</small>";
+      d_a1_2.getDate() + "." + (d_a1_2.getMonth()+1) + ". des langjährigen mittleren Summe)</small>";
 
     document.getElementById('map_title_mobile').innerHTML = "<b>Abweichung 30-Tage <small>[%]</small></b><br /><small class=\"text-secondary\" style=\"margin-left: 5px;\">(ab " + 
       d_a1_1.getDate() + "." + (d_a1_1.getMonth()+1) + '.' + d_a1_1.getFullYear().toString().substr(-2) + ")</small>";
@@ -860,7 +860,7 @@ function setAnalysis(id) {
     map.removeLayer(fg_res_ly);
 
     document.getElementById('map_title').innerHTML = "<b>Niederschlag - Abweichung " + monthNames[d_a2_1.getMonth()] + ' ' + d_a2_1.getFullYear() + " <small>[%]</small></b> <small class=\"text-secondary\" style=\"margin-left: 5px;\">(Mittlerer Niederschlag des Monats " + 
-      monthNames[d_a2_1.getMonth()] + ' ' + d_a2_1.getFullYear() + " im Vergleich zu " + monthNames[d_a2_1.getMonth()] + " des langjährigen Mittels)</small>"; 
+      monthNames[d_a2_1.getMonth()] + ' ' + d_a2_1.getFullYear() + " im Vergleich zu " + monthNames[d_a2_1.getMonth()] + " der langjährigen mittleren Summe)</small>"; 
 
     document.getElementById('map_title_mobile').innerHTML = "<b>Abweichung " + monthNames[d_a2_1.getMonth()] + ' ' + d_a2_1.getFullYear().toString().substr(-2) + " <small>[%]</small></b>"; 
   } else if (id == 'cat_3') {
@@ -871,7 +871,7 @@ function setAnalysis(id) {
     map.removeLayer(fg_res_ly);
 
     document.getElementById('map_title').innerHTML = "<b>Niederschlag - Abweichung " + monthNames[d_a3_1.getMonth()] + ' ' + d_a3_1.getFullYear() +  " <small>[%]</small></b> <small class=\"text-secondary\" style=\"margin-left: 5px;\">(Mittlerer Niederschlag des Monats " + 
-      monthNames[d_a3_1.getMonth()] + ' ' + d_a3_1.getFullYear() + " im Vergleich zu " + monthNames[d_a3_1.getMonth()] + " des langjährigen Mittels)</small>"; 
+      monthNames[d_a3_1.getMonth()] + ' ' + d_a3_1.getFullYear() + " im Vergleich zu " + monthNames[d_a3_1.getMonth()] + " der langjährigen mittleren Summe)</small>"; 
   
     document.getElementById('map_title_mobile').innerHTML = "<b>Abweichung " + monthNames[d_a3_1.getMonth()] + ' ' + d_a3_1.getFullYear().toString().substr(-2) + " <small>[%]</small></b>"; 
   } else if (id == 'cat_4') {
@@ -883,7 +883,7 @@ function setAnalysis(id) {
 
     document.getElementById('map_title').innerHTML = "<b>Niederschlag - Abweichung Heuer <small>[%]</small></b> <small class=\"text-secondary\" style=\"margin-left: 5px;\">(Mittlerer Niederschlag von 01.01." + 
       " bis " + d_a4_2.getDate() + "." + (d_a4_2.getMonth()+1) + "." + d_a4_2.getFullYear() + 
-      " im Vergleich zum Zeitabschnitt 01.01. bis " + d_a4_2.getDate() + "." + (d_a4_2.getMonth()+1) + ". des langjährigen Mittels)</small>"; 
+      " im Vergleich zum Zeitabschnitt 01.01. bis " + d_a4_2.getDate() + "." + (d_a4_2.getMonth()+1) + ". der langjährigen mittleren Summe)</small>"; 
 
     document.getElementById('map_title_mobile').innerHTML = "<b>Abweichung Heuer <small>[%]</small></b> <small class=\"text-secondary\" style=\"margin-left: 5px;\"><br />(bis " + 
       d_a4_2.getDate() + "." + (d_a4_2.getMonth()+1) + '.' + d_a4_2.getFullYear().toString().substr(-2) + ")</small>";
@@ -895,7 +895,7 @@ function setAnalysis(id) {
     map.addLayer(fg_res_ly);
 
     document.getElementById('map_title').innerHTML = "<b>Niederschlag - Abweichung Vorjahr <small>[%]</small></b> <small class=\"text-secondary\" style=\"margin-left: 5px;\">(Mittlerer Niederschlag des Jahres " + 
-      (d_a5_1.getFullYear()) + " im Vergleich zum langjährigen Mittel)</small>";
+      (d_a5_1.getFullYear()) + " im Vergleich zur langjährigen mittleren Summe)</small>";
       
     document.getElementById('map_title_mobile').innerHTML = "<b>Abweichung Vorjahr <small>[%]</small></b><br /><small class=\"text-secondary\" style=\"margin-left: 5px;\">(" + (d_a5_1.getFullYear()) +")</small>";
 
