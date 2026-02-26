@@ -230,15 +230,6 @@ var tile_layer_basemap_ortho = L.tileLayer("https://mapsneu.wien.gv.at/basemap/b
 
 // Custom Layers Geoserver
 
-var hs = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
-  layers: 'hydrodash:srtm_hs_wgs84',
-  opacity: 1,
-  transparent: true,
-  format: 'image/png',
-  attribution: "NASA SRTM Global (earthdata.nasa.gov)", 
-  pane: 'bg',
-}).addTo(map);
-
 var countries = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
   layers: 'hydrodash:countries',
   opacity: 1,
@@ -764,7 +755,6 @@ var image_overlay_brighten_75 = L.imageOverlay("data:image/png;base64,iVBORw0KGg
 
 var layer_control = {
   base_layers : {
-    "Hillshade (SRTM)": hs,
     "OSM Swiss": tile_layer_osm_swiss,
     "OSM" : tile_layer_osm,
     "Austria Hillshade (basemap.at)" : tile_layer_basemap_gelaende,
@@ -801,7 +791,6 @@ image_overlay_brighten_10.remove();
 image_overlay_brighten_25.remove();
 image_overlay_brighten_50.remove();
 tile_layer_osm_swiss.remove();
-hs.remove();
 tile_layer_basemap.remove();
 tile_layer_basemap_ortho.remove();
 tile_layer_basemap_overlay.remove();
