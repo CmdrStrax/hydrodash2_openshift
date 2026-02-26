@@ -18,7 +18,7 @@ helper('url');
       rowGroup: { dataSrc: 1 },
       columns: [
         { width: '31%' }, 
-        {visible: false}, 
+        { visible: false }, 
         { width: '11.5%' }, 
         { width: '11.5%' }, 
         { width: '11.5%' }, 

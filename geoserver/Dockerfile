@@ -2,7 +2,7 @@ FROM docker.osgeo.org/geoserver:2.28.x
 
 # Serve web.xml with WFS->JSON enabled
 
-COPY ./geoserver_web.xml /opt/config_overrides/web.xml
+#COPY ./geoserver_web.xml /opt/config_overrides/web.xml
 
 # Serve data directory
 

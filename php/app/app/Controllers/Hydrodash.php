@@ -556,11 +556,11 @@ class Hydrodash extends BaseController
             }
         }
 
-        $data["a1"] = $a1; 
-        $data["a2"] = $a2; 
-        $data["a3"] = $a3; 
-        $data["a4"] = $a4; 
-        $data["a5"] = $a5; 
+        $data["a1"] = $a1;
+        $data["a2"] = $a2;
+        $data["a3"] = $a3;
+        $data["a4"] = $a4;
+        $data["a5"] = $a5;
 
         $catch = $model_ds->getDatastreamCatchment($id);
         $data["ds_comment"] = $catch['comment'];
