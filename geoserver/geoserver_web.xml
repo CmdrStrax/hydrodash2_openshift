@@ -47,10 +47,10 @@
     </context-param>
     
     
-    <context-param>
+    <!--<context-param>
       <param-name>PROXY_BASE_URL</param-name>
       <param-value>https://geoserver.apps.okd.akldom01.at/geoserver</param-value>
-    </context-param>
+    </context-param> -->
 
     <!--
    <context-param>
@@ -136,11 +136,11 @@
         reasons
         -->
     </filter>
-
+  <!--
   <context-param>
        <param-name>GEOSERVER_CSRF_WHITELIST</param-name>
        <param-value>geoserver.apps.okd.akldom01.at</param-value>
-  </context-param> 
+  </context-param> -->
 
   <filter>
       <filter-name>cross-origin</filter-name>
