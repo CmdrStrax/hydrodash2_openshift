@@ -15,4 +15,3 @@ RUN chgrp -R 0 /opt/geoserver_data && chmod -R g=u /opt/geoserver_data
 RUN chgrp -R 0 /usr/local/tomcat/webapps/geoserver && chmod -R g=u /usr/local/tomcat/webapps/geoserver
 RUN chgrp -R 0 /usr/local/tomcat/conf && chmod -R g=u /usr/local/tomcat/conf
 RUN chgrp -R 0 /usr/local/tomcat/conf/server.xml && chmod -R g=u /usr/local/tomcat/conf/server.xml
-
