@@ -278,7 +278,7 @@ var carinthia = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
 }).addTo(map);
 
 var cities = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
-  layers: 'hydrodash:cities',
+  layers: 'hydrodash:urban',
   opacity: 1,
   transparent: true,
   format: 'image/png',
