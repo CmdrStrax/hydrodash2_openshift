@@ -14,6 +14,6 @@ sed -i "s|__POSTGRES_PASSWORD__|${POSTGRES_PASSWORD}|g" $GEOSERVER_DATA_DIR/work
 
 sed -i "s|__GEO_USER__|${GEOSERVER_ADMIN_USER}|g" $GEOSERVER_DATA_DIR/security/usergroup/default/users.xml
 sed -i "s|__GEO_PASSWORD__|${GEOSERVER_ADMIN_PASSWORD}|g" $GEOSERVER_DATA_DIR/security/usergroup/default/users.xml
-sed -i "s|__GEO_USER__|${GEOSERVER_ADMIN_USER}|g" $GEOSERVER_DATA_DIR/security/usergroup/default/roles.xml
+sed -i "s|__GEO_USER__|${GEOSERVER_ADMIN_USER}|g" $GEOSERVER_DATA_DIR/security/role/default/roles.xml
 
 exec "$@"
