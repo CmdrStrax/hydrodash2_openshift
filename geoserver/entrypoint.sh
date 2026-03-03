@@ -16,4 +16,7 @@ sed -i "s|__GEO_USER__|${GEOSERVER_ADMIN_USER}|g" $GEOSERVER_DATA_DIR/security/u
 sed -i "s|__GEO_PASSWORD__|${GEOSERVER_ADMIN_PASSWORD}|g" $GEOSERVER_DATA_DIR/security/usergroup/default/users.xml
 sed -i "s|__GEO_USER__|${GEOSERVER_ADMIN_USER}|g" $GEOSERVER_DATA_DIR/security/role/default/roles.xml
 
-exec "$@"
+cp /opt/config_overrides/web.xml \
+   /usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml
+
+exec "$@" 
