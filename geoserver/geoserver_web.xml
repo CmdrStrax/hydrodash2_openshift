@@ -136,11 +136,11 @@
         reasons
         -->
     </filter>
-  
+
   <context-param>
        <param-name>GEOSERVER_CSRF_WHITELIST</param-name>
        <param-value>geoserver.apps.okd.akldom01.at</param-value>
-  </context-param>
+  </context-param> 
 
   <filter>
       <filter-name>cross-origin</filter-name>
@@ -155,7 +155,7 @@
      </init-param>
      <init-param>
          <param-name>cors.allowed.headers</param-name>
-         <param-value>Origin,Accept,Content-Type,Authorization,Cache-Control,Pragma,If-Modified-Since,If-None-Match,X-Requested-With</param-value>
+         <param-value>*</param-value>
      </init-param>
  </filter>
 
@@ -214,11 +214,12 @@
     </filter-mapping>
 
     <!-- Uncomment following filter-mapping to enable CORS -->
-    
+    <!--
     <filter-mapping>
         <filter-name>cross-origin</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    -->
 
     <filter-mapping>
         <filter-name>FlushSafeFilter</filter-name>
