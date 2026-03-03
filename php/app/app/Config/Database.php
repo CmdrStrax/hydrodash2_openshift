@@ -48,7 +48,7 @@ class Database extends Config
         $this->default['hostname'] = getenv('POSTGRES_HOST');
         $this->default['username'] = getenv('POSTGRES_USER');
         $this->default['password'] = getenv('POSTGRES_PASSWORD');
-        $this->default['database'] = getenv('POSTGRES_DB');
+        $this->default['database'] = getenv('POSTGRES_DATABASE');
         $this->default['port'] = getenv('POSTGRES_PORT');
 
         // Ensure that we always set the database group to 'tests' if
