@@ -1,5 +1,24 @@
 # HydroDash
 
+## Container
+
+### pg
+
+Postgres DB with Postgis extension. 
+Mode: Dockerfile
+
+### geoserver
+
+Postgres Connection set via environment variables.
+Custom configuration in geoserver_web.xml (will be revised).
+Mode: Dockerfile
+
+### php
+
+CI4 Webapplication for Dashboard.
+Postgres Connection and Geoserver Service URLs set via environment variables.
+Mode: Dockerfile
+
 ## Environment variables
 
 ### Postgis
@@ -19,6 +38,12 @@
  - GEOSERVER_CSRF_WHITELIST  -> "test.domain"
  - ENABLE_JSONP -> "true"
  
+ - POSTGRES_HOST
+ - POSTGRES_PORT
+ - POSTGRES_DATABASE
+ - POSTGRES_USER
+ - POSTGRES_PASS
+
 ### PHP Webapp
 
  - PUBLIC_URL -> "https://test.domain/"
@@ -30,4 +55,3 @@
  - POSTGRES_DATABASE
  - POSTGRES_USER
  - POSTGRES_PASS
-
