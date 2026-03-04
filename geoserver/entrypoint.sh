@@ -2,7 +2,9 @@
 
 set -e
 
+#
 # Fill postgis connection
+#
 
 sed -i "s|__POSTGRES_DATABASE__|${POSTGRES_DATABASE}|g" $GEOSERVER_DATA_DIR/workspaces/hydrodash/hydrodash/datastore.xml
 sed -i "s|__POSTGRES_HOST__|${POSTGRES_HOST}|g" $GEOSERVER_DATA_DIR/workspaces/hydrodash/hydrodash/datastore.xml
@@ -10,13 +12,32 @@ sed -i "s|__POSTGRES_PORT__|${POSTGRES_PORT}|g" $GEOSERVER_DATA_DIR/workspaces/h
 sed -i "s|__POSTGRES_USER__|${POSTGRES_USER}|g" $GEOSERVER_DATA_DIR/workspaces/hydrodash/hydrodash/datastore.xml
 sed -i "s|__POSTGRES_PASSWORD__|${POSTGRES_PASSWORD}|g" $GEOSERVER_DATA_DIR/workspaces/hydrodash/hydrodash/datastore.xml
 
+#
 # Pass admin credentials from env
+#
 
 sed -i "s|__GEO_USER__|${GEOSERVER_ADMIN_USER}|g" $GEOSERVER_DATA_DIR/security/usergroup/default/users.xml
 sed -i "s|__GEO_PASSWORD__|${GEOSERVER_ADMIN_PASSWORD}|g" $GEOSERVER_DATA_DIR/security/usergroup/default/users.xml
 sed -i "s|__GEO_USER__|${GEOSERVER_ADMIN_USER}|g" $GEOSERVER_DATA_DIR/security/role/default/roles.xml
 
+#
+# Pass custom web.xml
+#
+
 cp /opt/config_overrides/web.xml \
    /usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml
 
-exec "$@" 
+#
+# (future work) Pass custom config with env-variables
+#
+
+# Alter PROXY_BASE_URL and GEOSERVER_CSRF_WHITELIST from env.-variables
+
+#sed -i "s|__PROXY_BASE_URL__|${PROXY_BASE_URL}|g" /opt/config_overrides/custom_web.xml
+#sed -i "s|__GEOSERVER_CSRF_WHITELIST__|${GEOSERVER_CSRF_WHITELIST}|g" /opt/config_overrides/custom_web.xml
+
+# Insert custom config before </web-app>
+
+#sed -i '/<\/web-app>/e cat /opt/config_overrides/custom_web.xml' /usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml
+
+exec "$@"

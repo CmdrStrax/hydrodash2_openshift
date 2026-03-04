@@ -7,6 +7,7 @@ FROM docker.osgeo.org/geoserver:2.28.x
 #
 
 COPY ./geoserver_web.xml /opt/config_overrides/web.xml
+#COPY ./custom_web.xml /opt/config_overrides/custom_web.xml
 
 #
 # Serve data directory

@@ -4,19 +4,19 @@
 
 ### pg
 
-Postgres DB with Postgis extension. 
+Postgres DB with Postgis extension.  
 Mode: Dockerfile
 
 ### geoserver
 
-Postgres Connection set via environment variables.
-Custom configuration in geoserver_web.xml (will be revised).
+Postgres Connection set via environment variables.  
+Custom configuration in geoserver_web.xml (will be revised).  
 Mode: Dockerfile
 
 ### php
 
-CI4 Webapplication for Dashboard.
-Postgres Connection and Geoserver Service URLs set via environment variables.
+CI4 Webapplication for Dashboard.  
+Postgres Connection and Geoserver Service URLs set via environment variables.  
 Mode: Dockerfile
 
 ## Environment variables
@@ -34,9 +34,8 @@ Mode: Dockerfile
  - GEOSERVER_ADMIN_USER
  - GEOSERVER_ADMIN_PASSWORD
 
- - PROXY_BASE_URL -> "https://test.domain/geoserver/"
- - GEOSERVER_CSRF_WHITELIST  -> "test.domain"
- - ENABLE_JSONP -> "true"
+ - PROXY_BASE_URL (e.g. "https://test.domain/geoserver/")
+ - GEOSERVER_CSRF_WHITELIST (e.g. "test.domain")
  
  - POSTGRES_HOST
  - POSTGRES_PORT
@@ -46,9 +45,9 @@ Mode: Dockerfile
 
 ### PHP Webapp
 
- - PUBLIC_URL -> "https://test.domain/"
- - GEOSERVER_WMS_URL -> "https://test.domain/geoserver/hydrodash/wms?tiled=true"
- - GEOSERVER_WFS_URL -> "https://test.domain/geoserver/hydrodash/wfs"
+ - PUBLIC_URL (e.g. "https://test.domain/")
+ - GEOSERVER_WMS_URL (e.g. "https://test.domain/geoserver/hydrodash/wms?tiled=true")
+ - GEOSERVER_WFS_URL (e.g. "https://test.domain/geoserver/hydrodash/wfs")
  
  - POSTGRES_HOST
  - POSTGRES_PORT
