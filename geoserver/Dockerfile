@@ -26,6 +26,7 @@ RUN chgrp -R 0 /usr/local/tomcat/conf && chmod -R g=u /usr/local/tomcat/conf
 RUN chgrp -R 0 /usr/local/tomcat/conf/server.xml && chmod -R g=u /usr/local/tomcat/conf/server.xml
 
 RUN chgrp -R 0 /opt/config_overrides && chmod -R g=u /opt/config_overrides
+RUN chgrp -R 0 /usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml && chmod -R g=u /usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml
 
 #
 # Execute script for PG-configuration
