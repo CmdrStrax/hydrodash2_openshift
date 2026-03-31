@@ -33,11 +33,11 @@ cp /opt/config_overrides/web.xml \
 
 # Alter PROXY_BASE_URL and GEOSERVER_CSRF_WHITELIST from env.-variables
 
-#sed -i "s|__PROXY_BASE_URL__|${PROXY_BASE_URL}|g" /opt/config_overrides/custom_web.xml
-#sed -i "s|__GEOSERVER_CSRF_WHITELIST__|${GEOSERVER_CSRF_WHITELIST}|g" /opt/config_overrides/custom_web.xml
+sed -i "s|__PROXY_BASE_URL__|${PROXY_BASE_URL}|g" /opt/config_overrides/custom_web.xml
+sed -i "s|__GEOSERVER_CSRF_WHITELIST__|${GEOSERVER_CSRF_WHITELIST}|g" /opt/config_overrides/custom_web.xml
 
 # Insert custom config before </web-app>
 
-#sed -i '/<\/web-app>/e cat /opt/config_overrides/custom_web.xml' /usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml
+sed -i '/<\/web-app>/e cat /opt/config_overrides/custom_web.xml' /usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml
 
 exec "$@"
