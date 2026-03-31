@@ -42,13 +42,14 @@ sed -i'' "s|__GEOSERVER_CSRF_WHITELIST__|$(escape "$GEOSERVER_CSRF_WHITELIST")|g
 
 # Insert custom config before </web-app>
 
-#sed -i'' '/<\/web-app>/e cat /opt/config_overrides/custom_web.xml' "/usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml"
-awk '
-/<\/web-app>/ {
-  system("cat /opt/config_overrides/custom_web.xml")
-}
-{ print }
-' "/usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml" \
-> /tmp/web.xml && mv /tmp/web.xml "/usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml"
+sed -i'' '/<\/web-app>/e cat /opt/config_overrides/custom_web.xml' "/usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml"
+
+#awk '
+#/<\/web-app>/ {
+#  system("cat /opt/config_overrides/custom_web.xml")
+#}
+#{ print }
+#' "/usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml" \
+#> /tmp/web.xml && mv /tmp/web.xml "/usr/local/tomcat/webapps/geoserver/WEB-INF/web.xml"
 
 exec "$@"
