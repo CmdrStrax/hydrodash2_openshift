@@ -41,7 +41,7 @@
     <!--Can be true or false (defaults to: false). -->
     <!--When true the JSONP (text/javascript) output format is enabled -->
     
-    <context-param>
+    <!--<context-param>
       <param-name>ENABLE_JSONP</param-name>
       <param-value>true</param-value>
     </context-param>
@@ -49,8 +49,8 @@
     
     <context-param>
       <param-name>PROXY_BASE_URL</param-name>
-      <param-value>https://geoserver.apps.okd.akldom01.at/geoserver</param-value>
-    </context-param>
+      <param-value></param-value>
+    </context-param>-->
 
     <!--
    <context-param>
@@ -137,10 +137,10 @@
         -->
     </filter>
 
-    <context-param>
+    <!--<context-param>
         <param-name>GEOSERVER_CSRF_WHITELIST</param-name>
         <param-value>geoserver.apps.okd.akldom01.at</param-value>
-    </context-param> 
+    </context-param> -->
 
     <!--<filter>
         <filter-name>cross-origin</filter-name>
