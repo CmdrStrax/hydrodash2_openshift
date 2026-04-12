@@ -5,4 +5,6 @@ RUN apt-get upgrade -y
 RUN apt-get install postgis -y
 RUN apt-get install postgresql-18-postgis-3 -y
 
+RUN chgrp -R 0 /var/lib/postgresql/data && chmod -R g=u /var/lib/postgresql/data
+
 COPY hydrodash2_dump.sql /docker-entrypoint-initdb.d/
