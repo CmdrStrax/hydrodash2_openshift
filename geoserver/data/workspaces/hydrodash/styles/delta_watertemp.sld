@@ -346,8 +346,8 @@
             <se:LabelPlacement>
               <se:PointPlacement>
                 <se:AnchorPoint>
-                  <se:AnchorPointX>0.5</se:AnchorPointX>
-                  <se:AnchorPointY>0</se:AnchorPointY>
+                  <se:AnchorPointX>0.64</se:AnchorPointX>
+                  <se:AnchorPointY>0.5</se:AnchorPointY>
                 </se:AnchorPoint>
               </se:PointPlacement>
             </se:LabelPlacement>
@@ -360,11 +360,15 @@
             <se:Fill>
               <se:SvgParameter name="fill">#323232</se:SvgParameter>
             </se:Fill>            
-            <se:VendorOption name="maxDisplacement">1</se:VendorOption>
-            <se:VendorOption name="repeat">-1</se:VendorOption>
+            <se:VendorOption name="maxDisplacement">100</se:VendorOption>
+            <se:VendorOption name="repeat">1</se:VendorOption>
+            <se:VendorOption name="partials">true</se:VendorOption>
+            <se:VendorOption name="charSpacing">-1</se:VendorOption>
+            <se:VendorOption name="wordSpacing">-5</se:VendorOption>
           </se:TextSymbolizer>
         </se:Rule>
       </se:FeatureTypeStyle>
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
+

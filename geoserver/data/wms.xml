@@ -2,10 +2,10 @@
   <id>wms</id>
   <enabled>true</enabled>
   <name>WMS</name>
-  <title>INCA WMS Service</title>
+  <title>WMS Service HydroDash</title>
   <internationalTitle/>
   <maintainer>http://geoserver.org/com</maintainer>
-  <abstrct>WMS Service für die Visualisierung von stündlich aktualisierten INCA Daten der ZAMG. Verfügbar sind Raster für Niederschlagssummen, Temperatur und Schneefallgrenze.</abstrct>
+  <abstrct></abstrct>
   <internationalAbstract/>
   <accessConstraints>NONE</accessConstraints>
   <fees>NONE</fees>
@@ -21,9 +21,6 @@
     <string>WFS</string>
     <string>WMS</string>
     <string>GEOSERVER</string>
-    <string>Niederschlagssummen\@language=de\;</string>
-    <string>Temperatur\@language=de\;</string>
-    <string>Schneefallgrenze\@language=de\;</string>
   </keywords>
   <metadataLink/>
   <citeCompliant>false</citeCompliant>

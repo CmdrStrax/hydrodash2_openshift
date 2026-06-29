@@ -139,7 +139,7 @@
 
     <!--<context-param>
         <param-name>GEOSERVER_CSRF_WHITELIST</param-name>
-        <param-value>geoserver.apps.okd.akldom01.at</param-value>
+        <param-value></param-value>
     </context-param> -->
 
     <!--<filter>
