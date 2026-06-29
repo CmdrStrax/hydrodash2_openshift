@@ -132,9 +132,15 @@ var d_a6_2 = new Date(null);
 // Leaflet map
 //
 
+my_zoom = 9.5;
+
+if (mobileCheck()){
+  my_zoom = 9;
+}
+
 var map = L.map('map', { 
   center: [46.7535, 13.8612], 
-  zoom: 9.5, 
+  zoom: my_zoom, 
   gestureHandling: true, 
   zoomSnap: 0.5, 
   zoomDelta: 0.5, 
@@ -1126,7 +1132,7 @@ async function saveAsImage(format) {
   document.head.removeChild(styleOverride);
 }
 
-// Hide legend on mobile
+// Hide legend and zoom out on mobile
 
 if (mobileCheck()){
   $('.legend').hide(); 
