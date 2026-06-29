@@ -148,3 +148,12 @@
     margin-top: 0.25em;
     margin-bottom: 0.25em;
 }
+.leaflet-control-graphicscale .line {
+    border-color: rgb(90, 90, 90) !important;
+}
+.leaflet-control-graphicscale .filled .fill {
+    background-color: rgb(90, 90, 90) !important;
+}
+.leaflet-control-graphicscale {
+    color: rgb(70, 70, 70);
+}

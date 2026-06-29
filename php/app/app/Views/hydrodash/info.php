@@ -1,7 +1,7 @@
 <div class="content">
 <div class="container-fluid mt-3 mb-4 pb-4">
     <b class="card-title m-auto ms-2" style="font-size: 1.2em">Berechnungsgrundlage</b><br />
-    <small class="text-secondary ms-2 mt-2">Stand: 27.01.2026</small>
+    <small class="text-secondary ms-2 mt-2">Stand: 01.07.2026</small>
 
     <div class="card justify-content-center mt-4" id="discharge">
       <div class="card-header" style="background-color: #EBF2FA;">Abfluss und Quellschüttung</div>
@@ -39,12 +39,12 @@
             <tr>
                 <td>Wert</td>
                 <td>...</td>
-                <td>aktueller Mittelwert des Betrachtungszeitraums<br /><span class="text-secondary">e.g. &#8709; 01.01.2025 - 05.09.2025</span></td>
+                <td>aktueller Mittelwert des Betrachtungszeitraums<br /><span class="text-secondary">z. B. &#8709; 01.01.2025 - 05.09.2025</span></td>
             </tr>
             <tr>
                 <td>Grundwert</td>
                 <td>...</td>
-                <td>langjährige Mittelwert des Betrachtungszeitraum<br /><span class="text-secondary">e.g. &#8709; der Jahre 1991, 1992, ... 2019, 2020 im Zeitraum 01.01 - 05.09.<br />bei Grundwert = 0 wird + / - &#8734; angezeigt</span></td>
+                <td>langjährige Mittelwert des Betrachtungszeitraum<br /><span class="text-secondary">z. B. &#8709; der Jahre 1991, 1992, ... 2019, 2020 im Zeitraum 01.01 - 05.09.<br />bei Grundwert = 0 wird + / - &#8734; angezeigt</span></td>
             </tr>
         </table>
       </div>
@@ -86,12 +86,12 @@
             <tr>
                 <td>Wert</td>
                 <td>...</td>
-                <td>aktuelle Summe des Betrachtungszeitraums<br /><span class="text-secondary">e.g. &#8721; 01.01.2025 - 05.09.2025</span></td>
+                <td>aktuelle Summe des Betrachtungszeitraums<br /><span class="text-secondary">z. B. &#8721; 01.01.2025 - 05.09.2025</span></td>
             </tr>
             <tr>
                 <td>Grundwert</td>
                 <td>...</td>
-                <td>langjähriger Mittelwert der Summen des Betrachtungszeitraum<br /><span class="text-secondary">e.g. &#8709; der Jahre 1991, 1992, ... 2019, 2020 der &#8721; im Zeitraum 01.01 - 05.09.<br />bei Grundwert = 0 wird + / - &#8734; angezeigt</span></td>
+                <td>langjähriger Mittelwert der Summen des Betrachtungszeitraum<br /><span class="text-secondary">z. B. &#8709; der Jahre 1991, 1992, ... 2019, 2020 der &#8721; im Zeitraum 01.01 - 05.09.<br />bei Grundwert = 0 wird + / - &#8734; angezeigt</span></td>
             </tr>
         </table>
       </div>
@@ -116,12 +116,12 @@
             <tr>
                 <td>Wert</td>
                 <td>...</td>
-                <td>aktueller Mittelwert des Betrachtungszeitraums<br /><span class="text-secondary">e.g. &#8709; 01.01.2025 - 05.09.2025</span></td>
+                <td>aktueller Mittelwert des Betrachtungszeitraums<br /><span class="text-secondary">z. B. &#8709; 01.01.2025 - 05.09.2025</span></td>
             </tr>
             <tr>
                 <td>Grundwert</td>
                 <td>...</td>
-                <td>langjähriger Mittelwert des Betrachtungszeitraum<br /><span class="text-secondary">e.g. &#8709; der Jahre 1991, 1992, ... 2019, 2020 im Zeitraum 01.01 - 05.09.</span></td>
+                <td>langjähriger Mittelwert des Betrachtungszeitraum<br /><span class="text-secondary">z. B. &#8709; der Jahre 1991, 1992, ... 2019, 2020 im Zeitraum 01.01 - 05.09.</span></td>
             </tr>
         </table>
 
@@ -237,27 +237,27 @@
             <tr>
                 <td>Wert</td>
                 <td>...</td>
-                <td>aktueller Mittelwert des Betrachtungszeitraums<br /><span class="text-secondary">e.g. &#8709; 01.01.2025 - 05.09.2025</span></td>
+                <td>aktueller Mittelwert des Betrachtungszeitraums<br /><span class="text-secondary">z. B. &#8709; 01.01.2025 - 05.09.2025</span></td>
             </tr>
             <tr>
                 <td>Grundwert Min</td>
                 <td>...</td>
-                <td>langjähriges Minimum des Betrachtungszeitraums<br /><span class="text-secondary">e.g. Mininimale Tageswerte der Jahre 1991, 1992, ... 2019, 2020, &#8709; aller min. Tageswerte des Zeitraums 01.01. - 05.09.</span></td>
+                <td>langjähriges Minimum des Betrachtungszeitraums<br /><span class="text-secondary">z. B. Mininimale Tageswerte der Jahre 1991, 1992, ... 2019, 2020, &#8709; aller min. Tageswerte des Zeitraums 01.01. - 05.09.</span></td>
             </tr>
             <tr>
                 <td>Grundwert Mittel</td>
                 <td>...</td>
-                <td>langjähriger Mittelwert des Betrachtungszeitraums<br /><span class="text-secondary">e.g. &#8709; der Jahre 1991, 1992, ... 2019, 2020 im Zeitraum 01.01 - 05.09.</span></td>
+                <td>langjähriger Mittelwert des Betrachtungszeitraums<br /><span class="text-secondary">z. B. Mittlere Tageswerte der Jahre 1991, 1992, ... 2019, 2020 im Zeitraum 01.01 - 05.09.</span></td>
             </tr>
             <tr>
                 <td>Grundwert Max</td>
                 <td>...</td>
-                <td>langjähriges Maximum des Betrachtungszeitraums<br /><span class="text-secondary">e.g. Maximale Tageswerte der Jahre 1991, 1992, ... 2019, 2020, &#8709; aller max. Tageswerte des Zeitraums 01.01. - 05.09.</span></td>
+                <td>langjähriges Maximum des Betrachtungszeitraums<br /><span class="text-secondary">z. B. Maximale Tageswerte der Jahre 1991, 1992, ... 2019, 2020, &#8709; aller max. Tageswerte des Zeitraums 01.01. - 05.09.</span></td>
             </tr>
         </table>
         <p class="text-secondary"><small>Beispiel:</small></p>
         <img src="<?php echo base_url(); ?>css/images/gw_descr.svg"></img>
-        <p>Hinweis: Da der Mittelwert i.d.R. nicht exakt zwischen Minimum und Maximum liegt, sind die Abweichungen im positiven und negativen Bereich meistens unterschiedlich groß.<br />
+        <p>Hinweis: Da der Mittelwert nicht exakt zwischen Minimum und Maximum liegt, sind die Abweichungen im positiven und negativen Bereich unterschiedlich groß.<br />
         <span class="text-secondary">&#8594; 1 % im positiven Bereich entspricht einem anderen Wert als 1 % im negativen Bereich.</span></p>
     </div>    
     </div>
@@ -357,5 +357,30 @@
       </div>
     </div>
 
+    <div class="card justify-content-center mt-3" id="gaps">
+      <div class="card-header" style="background-color: #EBF2FA;">Versionslog</div>
+      <div class="card-body">
+        <p><u>0.11</u><br /><small class="text-secondary">01.07.2026</small></p>
+        <ul>
+            <li>Änderungen Geo-Layer</li>
+            <li>Ergänzung Exportfunktion</li>
+            <li>Fehlerausbesserungen div.</li>
+        </ul>
+        <p><u>0.1</u><br /><small class="text-secondary">22.03.2026</small></p>
+        <ul>
+            <li>Publizierung Erststand</li>
+            <li>Auswertung und Darstellung für die Parameter
+                <ul>
+                    <li>Abfluss</li>
+                    <li>Wassertemperatur</li>
+                    <li>Niederschlag</li>
+                    <li>Lufttemperatur</li>
+                    <li>Grundwasser</li>
+                    <li>Quellen</li>
+                </ul>    
+            </li>
+        </ul>
+      </div>
+    </div>
 </div>
 </div>

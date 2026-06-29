@@ -2,7 +2,6 @@
 helper('text');
 helper('url'); 
 ?>
-
 <script type="text/javascript" class="init">
   $(document).ready(function () {
     dt_stations = $('#stations').DataTable({
@@ -17,7 +16,7 @@ helper('url');
       responsive: true,
       columns: [
         { width: '30%' }, 
-        {visible: false}, 
+        { visible: false }, 
         { width: '10%' }, 
         { width: '10%' }, 
         { width: '10%' }, 
@@ -31,7 +30,6 @@ helper('url');
     });
   });
 </script>
-
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="up" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>  
@@ -105,7 +103,7 @@ helper('url');
 </table>
 </div>
 </div>
-
+<script src="<?php echo base_url(); ?>geojson/geo.js"></script>
 <script>
 const monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
 const monthNamesShort = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
@@ -132,8 +130,25 @@ var d_a6_2 = new Date(null);
 // Leaflet map
 //
 
-var map = L.map('map', { center: [46.7535, 13.8612], zoom: 9.5, gestureHandling: true, fullscreenControl: true, zoomSnap: 0.5, zoomDelta: 0.5, attributionControl: false, });
-L.control.attribution({ position: 'bottomleft' }).addTo(map); // Attribution Bottomleft
+var map = L.map('map', { 
+  center: [46.7535, 13.8612], 
+  zoom: 9.5, 
+  gestureHandling: true, 
+  zoomSnap: 0.5, 
+  zoomDelta: 0.5, 
+  attributionControl: false,
+  touchZoom: true
+ });
+
+var attr = L.control.attribution({ position: 'bottomleft' }).addTo(map); 
+var graphicScale = L.control.graphicScale( { fill: 'line', position: 'bottomright', showSubunits: true } ); // Scale added to map later
+
+map.addControl(new L.Control.Fullscreen({
+    title: {
+        'false': 'Fullscreen',
+        'true': 'Fullscreen beenden'
+    }
+}));
 
 map.createPane('bg');
 map.getPane('bg').style.zIndex = 10;
@@ -156,7 +171,7 @@ map.getPane('vect_very_high_2').style.zIndex = 610;
 // Base layers
 
 var tile_layer_osm_swiss = L.tileLayer("https://tile.osm.ch/switzerland/{z}/{x}/{y}.png", {
-  "attribution": "OpenStreetMap contributors, Swiss OpenStreetMap Association, CC BY-SA",
+  "attribution": "<a href=\"https://openstreetmap.org\">OpenStreetMap</a> contributors, Swiss OpenStreetMap Association",
   "detectRetina": true, 
   "maxNativeZoom": 18, 
   "maxZoom": 18, 
@@ -168,7 +183,7 @@ var tile_layer_osm_swiss = L.tileLayer("https://tile.osm.ch/switzerland/{z}/{x}/
 }).addTo(map);
 
 var tile_layer_osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  "attribution": "Data by <a href=\"https://openstreetmap.org\">OpenStreetMap</a>, (c) by OpenStreetMap contributors", 
+  "attribution": "<a href=\"https://openstreetmap.org\">OpenStreetMap</a> contributors", 
   "detectRetina": true, 
   "maxNativeZoom": 18, 
   "maxZoom": 18, 
@@ -228,60 +243,141 @@ var tile_layer_basemap_ortho = L.tileLayer("https://mapsneu.wien.gv.at/basemap/b
   "pane": 'bg',
 }).addTo(map);
 
-// Custom Layers Geoserver
+// Custom layers geoJSON
 
-var countries = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
-  layers: 'hydrodash:countries',
-  opacity: 1,
-  transparent: true,
-  format: 'image/png',
-  attribution: "KAGIS", 
-  pane: 'vect',
+// geoJSON - Counties
+
+function geo_counties_styler(feature) {
+  switch(feature.id) {
+  default:
+    return { "color": "#888", "weight": 1.25, };
+  }
+}
+
+var counties = L.geoJson(null, {
+  style: geo_counties_styler,
 }).addTo(map);
 
-var counties = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
-  layers: 'hydrodash:counties',
-  opacity: 1,
-  transparent: true,
-  format: 'image/png',
-  attribution: "KAGIS", 
+function geo_json_counties_add (data) {
+  counties.addData(data);
+}
+
+geo_json_counties_add([counties_data]);
+
+// geoJSON - Highlight Carinthia
+
+function geo_carinthia_styler(feature) {
+  switch(feature.id) {
+  default:
+    return { "color": "#888", "fillColor": "#000", "fillOpacity": 0.1, "opacity": 0.75, "weight": 0, };
+  }
+}
+
+var carinthia = L.geoJson(null, {
+  style: geo_carinthia_styler,
   pane: 'vect',
+  attribution: "EuroGeographics", 
 }).addTo(map);
 
-var streams = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
+function geo_json_carinthia_add (data) {
+  carinthia.addData(data);
+}
+
+geo_json_carinthia_add([carinthia_data]);
+
+// geoJSON - Urban areas
+
+function geo_urban_styler(feature) {
+  switch(feature.id) {
+  default:
+    return {"fillColor": "#888", "fillOpacity": 0.33, "weight": 0,};
+  }
+}
+
+var urban = L.geoJson(null, {
+  style: geo_urban_styler,
+  pane: 'vect',
+  attribution: "Umweltbundesamt GmbH", 
+}).addTo(map);
+
+function geo_json_urban_add (data) {
+  urban.addData(data);
+}
+
+geo_json_urban_add([urban_data]);
+
+// geoJSON - Streams
+
+function geo_streams_styler(feature) {
+  switch(feature.id) {
+  default:
+    return {"color": "#778ca1", "fillColor": "#000", "fillOpacity": 0.1, "opacity": 1, "weight": feature.properties.linewidth,};
+  }
+}
+
+var streams = L.geoJson(null, {
+  style: geo_streams_styler,
+  pane: 'vect',
+  attribution: "Umweltbundesamt GmbH", 
+}).addTo(map);
+
+function geo_json_streams_add (data) {
+  streams.addData(data);
+}
+
+geo_json_streams_add([streams_data]);
+
+// geoJSON - Lakes
+
+function geo_lakes_styler(feature) {
+  switch(feature.id) {
+  default:
+    return {"color": "#778ca1", "fillColor": "#778ca1", "fillOpacity": 1, "opacity": 1, "weight": 1,};
+  }
+}
+
+var lakes = L.geoJson(null, {
+  style: geo_lakes_styler,
+  pane: 'vect',
+  attribution: "Umweltbundesamt GmbH", 
+}).addTo(map);
+
+function geo_json_lakes_add (data) {
+  lakes.addData(data);
+}
+
+geo_json_lakes_add([lakes_data]);
+
+// Custom layers Geoserver
+
+var streams_geoserver = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
   layers: 'hydrodash:streams',
   opacity: 1,
   transparent: true,
   format: 'image/png',
-  attribution: "CC-BY 4.0 Umweltbundesamt GmbH", 
+  attribution: "Umweltbundesamt GmbH", 
   pane: 'vect',
+  minZoom: 9.5,
 }).addTo(map);
 
-var lakes = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
+var lakes_geoserver = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
   layers: 'hydrodash:lakes',
   opacity: 1,
   transparent: true,
   format: 'image/png',
-  attribution: "CC-BY 4.0 Umweltbundesamt GmbH", 
+  attribution: "Umweltbundesamt GmbH", 
   pane: 'vect',
+  minZoom: 9.5,
 }).addTo(map);
 
-var carinthia = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
+var carinthia_geoserver = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
   layers: 'hydrodash:carinthia',
-  opacity: 0.2,
-  transparent: true,
-  format: 'image/png',
-  attribution: "KAGIS", 
-  pane: 'vect',
-}).addTo(map);
-
-var cities = L.tileLayer.wms('<?php echo $geoserver_wms_url; ?>', {
-  layers: 'hydrodash:urban',
   opacity: 1,
   transparent: true,
   format: 'image/png',
-  attribution: "CC-BY 4.0 Umweltbundesamt GmbH", 
+  attribution: "BEV Datenthema Verwaltungseinheiten", 
   pane: 'vect',
+  minZoom: 10.5,
 }).addTo(map);
 
 // Basin Overlay (total value)
@@ -292,7 +388,7 @@ var overview_basin_div = L.divIcon({
   "iconSize": [120, 60],
 });
 
-var overview_basin = L.marker([46.7535, 13.8612], {icon: overview_basin_div, pane: 'vect_very_high_2'}).addTo(map);
+var overview_basin = L.marker([46.7535, 13.8612], {icon: overview_basin_div, pane: 'vect_very_high_2', }).addTo(map);
 
 // Basin Overlays (basins)
 
@@ -374,6 +470,8 @@ $.ajax('<?php echo $geoserver_wfs_url; ?>',{
   jsonp:'format_options'
 });
 
+var radio_cat = L.control({});
+
 function handleJsonHydroDash(data) {
 
   // Add Radio-Buttons and Title
@@ -441,7 +539,7 @@ function handleJsonHydroDash(data) {
         '</div>';
     }
 
-    var radio_cat = L.control({position: radio_cat_pos});
+    radio_cat.setPosition(radio_cat_pos);
 
     radio_cat.onAdd = function (map) {
       var div = L.DomUtil.create('div', 'checkbox_cat');
@@ -450,6 +548,10 @@ function handleJsonHydroDash(data) {
     };
 
     radio_cat.addTo(map);
+
+    if (!mobileCheck()) {
+      graphicScale.addTo(map); // Add Scale above buttons
+    }
 
     setAnalysis('cat_5');
   }
@@ -751,6 +853,12 @@ var image_overlay_brighten_75 = L.imageOverlay("data:image/png;base64,iVBORw0KGg
 // Control elements
 //
 
+// Layer groups for switch geoJSON- and WMF Layer
+
+streams_grp = L.layerGroup([streams, streams_geoserver]).addTo(map);
+lakes_grp = L.layerGroup([lakes, lakes_geoserver]).addTo(map);
+counties_grp = L.layerGroup([carinthia, carinthia_geoserver, counties]).addTo(map);
+
 // Layer control
 
 var layer_control = {
@@ -762,11 +870,9 @@ var layer_control = {
     "Austria Orthofotos (basemap.at)" : tile_layer_basemap_ortho,
   },
   overlays :  {
-    "Highlighting Kärnten": carinthia,
-    "Ländergrenzen": counties,  
-    "Staatsgrenzen": countries, 
-    "Gewässernetz": streams,
-    "Seen": lakes,
+    "Ländergrenzen": counties_grp,
+    "Gewässernetz": streams_grp,
+    "Seen": lakes_grp,
     "Austria Basemap Overlay (basemap.at)" : tile_layer_basemap_overlay,
     "Karte aufhellen 10 %" : image_overlay_brighten_10,
     "Karte aufhellen 25 %" : image_overlay_brighten_25,
@@ -786,6 +892,10 @@ fg_res_l30d.remove();
 fg_res_lm.remove();
 fg_res_lm2.remove();
 fg_res_ly.remove();
+
+lakes_geoserver.remove();
+streams_geoserver.remove();
+carinthia_geoserver.remove();
 
 image_overlay_brighten_10.remove();
 image_overlay_brighten_25.remove();
@@ -810,6 +920,7 @@ overview_basin.remove();
 var legend = L.control({ position: "bottomleft" })
   legend.onAdd = function(map) {
   var div = L.DomUtil.create("div", "legend");
+  div.id = "map_legend";
   div.innerHTML += '<b>Abweichung <small>[°C]</small></b><br />';
   div.innerHTML += '<i style="background: rgba(69,117,180,1)"></i><span>< -4.5</span><br>';
   div.innerHTML += '<i style="background: rgba(116,173,209,1)"></i><span>-4.5 - -3</span><br>';
@@ -832,7 +943,7 @@ const buttonTitle = L.control({ position: 'topleft' });
 buttonTitle.onAdd = () => {
     const buttonDiv = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
 
-    buttonDiv.innerHTML = '<div id="btn_title" style="cursor: pointer; background-color: white; color: #b0b0b0ff; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16"><path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/></svg></div>';
+    buttonDiv.innerHTML = '<div id="btn_title" style="cursor: pointer; background-color: white; color: #b0b0b0ff; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16"><title>Kartentitel anzeigen</title><path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/></svg></div>';
     buttonDiv.addEventListener('click', function() {
       if(showTitle === true) {
         $('#map_title').hide(); 
@@ -864,7 +975,7 @@ const buttonLegend = L.control({ position: 'topleft' });
 buttonLegend.onAdd = () => {
     const buttonDiv = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
 
-    buttonDiv.innerHTML = '<div id="btn_legend" style="cursor: pointer; background-color: white; color: black; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16"><path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/><path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/></svg></div>';
+    buttonDiv.innerHTML = '<div id="btn_legend" style="cursor: pointer; background-color: white; color: black; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16"><title>Legende anzeigen</title><path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/><path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/></svg></div>';
     buttonDiv.addEventListener('click', function() {
       if(showLegend === true) {
         $('.legend').hide(); 
@@ -879,6 +990,142 @@ buttonLegend.onAdd = () => {
     return buttonDiv;
 };
 buttonLegend.addTo(map);
+
+// Buttons print
+
+const buttonPrintSvg = L.control({ position: 'topleft' });
+buttonPrintSvg.onAdd = () => {
+    const buttonDiv = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+
+    buttonDiv.innerHTML = '<div id="btn_print" style="cursor: pointer; background-color: white; color: black; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16"><title>Karte als SVG exportieren</title><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg></div>';
+    buttonDiv.addEventListener('click', function() {
+      saveAsImage('svg');
+    })   
+    return buttonDiv;
+};
+buttonPrintSvg.addTo(map);
+
+const buttonPrintPdf = L.control({ position: 'topleft' });
+buttonPrintPdf.onAdd = () => {
+    const buttonDiv = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+
+    buttonDiv.innerHTML = '<div id="btn_print" style="cursor: pointer; background-color: white; color: black; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16"><title>Karte als PDF exportieren</title><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/><path d="M4.603 14.087a.8.8 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.7 7.7 0 0 1 1.482-.645 20 20 0 0 0 1.062-2.227 7.3 7.3 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a11 11 0 0 0 .98 1.686 5.8 5.8 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.86.86 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.7 5.7 0 0 1-.911-.95 11.7 11.7 0 0 0-1.997.406 11.3 11.3 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.8.8 0 0 1-.58.029m1.379-1.901q-.25.115-.459.238c-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361q.016.032.026.044l.035-.012c.137-.056.355-.235.635-.572a8 8 0 0 0 .45-.606m1.64-1.33a13 13 0 0 1 1.01-.193 12 12 0 0 1-.51-.858 21 21 0 0 1-.5 1.05zm2.446.45q.226.245.435.41c.24.19.407.253.498.256a.1.1 0 0 0 .07-.015.3.3 0 0 0 .094-.125.44.44 0 0 0 .059-.2.1.1 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a4 4 0 0 0-.612-.053zM8.078 7.8a7 7 0 0 0 .2-.828q.046-.282.038-.465a.6.6 0 0 0-.032-.198.5.5 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822q.036.167.09.346z"/></svg></div>';
+    buttonDiv.addEventListener('click', function() {
+      saveAsImage('pdf');
+    })   
+    return buttonDiv;
+};
+
+const buttonPrintPng = L.control({ position: 'topleft' });
+buttonPrintPng.onAdd = () => {
+    const buttonDiv = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+
+    buttonDiv.innerHTML = '<div id="btn_print" style="cursor: pointer; background-color: white; color: black; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16"><title>Karte als PNG exportieren</title><path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zm-3.76 8.132q.114.23.14.492h-.776a.8.8 0 0 0-.097-.249.7.7 0 0 0-.17-.19.7.7 0 0 0-.237-.126 1 1 0 0 0-.299-.044q-.427 0-.665.302-.234.301-.234.85v.498q0 .351.097.615a.9.9 0 0 0 .304.413.87.87 0 0 0 .519.146 1 1 0 0 0 .457-.096.67.67 0 0 0 .272-.264q.09-.164.091-.363v-.255H8.82v-.59h1.576v.798q0 .29-.097.55a1.3 1.3 0 0 1-.293.458 1.4 1.4 0 0 1-.495.313q-.296.111-.697.111a2 2 0 0 1-.753-.132 1.45 1.45 0 0 1-.533-.377 1.6 1.6 0 0 1-.32-.58 2.5 2.5 0 0 1-.105-.745v-.506q0-.543.2-.95.201-.406.582-.633.384-.228.926-.228.357 0 .636.1.281.1.48.275.2.176.314.407Zm-8.64-.706H0v4h.791v-1.343h.803q.43 0 .732-.172.305-.177.463-.475a1.4 1.4 0 0 0 .161-.677q0-.374-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.381.57.57 0 0 1-.238.24.8.8 0 0 1-.375.082H.788v-1.406h.66q.327 0 .512.182.185.181.185.521m1.964 2.666V13.25h.032l1.761 2.675h.656v-3.999h-.75v2.66h-.032l-1.752-2.66h-.662v4z"/></svg></div>';
+    buttonDiv.addEventListener('click', function() {
+      saveAsImage('png');
+    })   
+    return buttonDiv;
+};
+
+async function saveAsImage(format) {
+  
+  // Prepare map for print
+
+  title_left = $('.map_title').css('left');
+  border_top = $('#map').css('border-bottom-width');
+  border_bottom = $('#map').css('border-top-width');
+
+  $('.map_title').css('left', '12px');
+  $('#map').css('border-bottom-width', '0px');
+  $('#map').css('border-top-width', '0px');
+
+  dt_now = new Date();
+  dt_now_string = String(dt_now.getDate()).padStart(2, '0') + '.' +
+    String(dt_now.getMonth() + 1).padStart(2, '0') + '.' +
+    String(dt_now.getFullYear()) + ' ' +
+    String(dt_now.getHours()).padStart(2, '0') + ':' +
+    String(dt_now.getMinutes()).padStart(2, '0');
+
+  dt_now_string_fn = dt_now.getFullYear() + '' +
+    String(dt_now.getMonth() + 1).padStart(2, '0') + '' +
+    String(dt_now.getDate()).padStart(2, '0') + '' +
+    '_' +
+    String(dt_now.getHours()).padStart(2, '0') + 
+    String(dt_now.getMinutes()).padStart(2, '0') + 
+    String(dt_now.getSeconds()).padStart(2, '0');
+
+  attr_string = 'Karte erstellt am ' + dt_now_string;
+  attr.addAttribution(attr_string);
+
+  map.removeControl(radio_cat);
+  attr.setPosition("bottomright");
+  graphicScale.addTo(map);
+  
+  // Print DOM element with Snapdom
+
+  const mapElement = document.querySelector('#map');
+
+  // Override grey overlay from gestureHandling
+
+  const styleOverride = document.createElement('style');
+  styleOverride.innerHTML = '.leaflet-container:after { display: none !important; animation: none !important; opacity: 0 !important; }';
+  document.head.appendChild(styleOverride);
+  
+  const result = await snapdom(mapElement, { 
+    scale: 3, 
+    dpr: 1, 
+    compress: false,
+    filterMode: 'remove', 
+    filter: (node) => {
+      if (node.id === 'map_title' || node.id === 'map_legend') {
+        return true; 
+      }
+
+      if (node.classList && (node.classList.contains('leaflet-control-attribution') ||
+        node.classList.contains('leaflet-control-graphicscale'))) {
+        return true;
+      }
+
+      if (node.classList && (
+        node.classList.contains('leaflet-control-container') ||
+        node.classList.contains('leaflet-top') ||
+        node.classList.contains('leaflet-bottom') ||
+        node.classList.contains('leaflet-left') ||
+        node.classList.contains('leaflet-right')
+      )) {
+        return true;
+      }
+
+      if (node.classList && node.classList.contains('leaflet-control')) {
+        return false;
+      }
+
+      return true; 
+    },
+    plugins: [pdfImage({ orientation: 'landscape', quality: 1 })]
+  });
+      
+  if (format === 'pdf') {
+    await result.toPdfImage({filename: dt_now_string_fn + '_hydrodash_map.pdf' });
+  } else {
+    await result.download({ format: format, filename: dt_now_string_fn + '_hydrodash_map.png' });
+  }
+
+  // Reset map for standard use
+
+  await $('.map_title').css('left', title_left);
+  $('#map').css('border-bottom-width', border_bottom);
+  $('#map').css('border-top-width', border_top);
+
+  map.removeControl(legend);
+  attr.setPosition("bottomleft");
+  legend.addTo(map);
+  radio_cat.addTo(map);
+  attr.removeAttribution(attr_string);
+  graphicScale.addTo(map);
+
+  document.head.removeChild(styleOverride);
+}
 
 // Hide legend on mobile
 
@@ -989,7 +1236,8 @@ function setBasins(chk) {
     map.removeLayer(basin_last_year);
     map.removeLayer(overview_basin);
 
-    map.addLayer(carinthia);
+    setCounties();
+
     return;
   }
 
@@ -1035,15 +1283,89 @@ function setBasins(chk) {
     "iconSize": [120, 60],
   });
 
+  map.removeLayer(carinthia);
+  map.removeLayer(carinthia_geoserver);
+
   overview_basin.setIcon(my_div);  
   map.addLayer(overview_basin);
 }
 
-if (mobileCheck()) {
-  $('#map_title').hide();
-} else {
-  $('#map_title_mobile').hide();
+// Show Layer based on Zoom
+
+function setCounties() {
+  if (!map.hasLayer(counties_grp)) {
+      map.removeLayer(carinthia);
+      map.removeLayer(carinthia_geoserver);
+      map.removeLayer(counties);
+  } else if (map.hasLayer(basin_last_day) ||
+    map.hasLayer(basin_last_30days) ||
+    map.hasLayer(basin_last_month) ||
+    map.hasLayer(basin_last_lastmonth) ||
+    map.hasLayer(basin_this_year) ||
+    map.hasLayer(basin_last_year)) {
+      map.removeLayer(carinthia);
+      map.addLayer(counties);
+      map.removeLayer(carinthia_geoserver);
+  } else if (map.getZoom() >= 11.5) {
+      map.removeLayer(carinthia);
+      map.removeLayer(counties);
+      map.addLayer(carinthia_geoserver);
+  } else {
+      map.addLayer(carinthia);
+      map.addLayer(counties);
+      map.removeLayer(carinthia_geoserver);
+  }
 }
+
+function setStreams() {
+  if (map.getZoom() < 10.5) {
+    map.removeLayer(streams_geoserver);
+    map.addLayer(streams);
+  } else {
+    map.addLayer(streams_geoserver);
+    map.removeLayer(streams);
+  }
+}
+
+function setLakes() {
+  if (map.getZoom() < 10.5) {
+    map.removeLayer(lakes_geoserver);
+    map.addLayer(lakes);
+  } else {
+    map.addLayer(lakes_geoserver);
+    map.removeLayer(lakes);
+  }
+}
+
+map.on('zoomend', function () {
+  setCounties();
+  setStreams();
+  setLakes();
+});
+
+lakes_grp.on('add', function(){
+  setLakes();
+});
+
+streams_grp.on('add', function(){
+  setStreams();
+});
+
+counties_grp.on('add', function(){
+  setCounties();
+});
+
+// Show print to PDF only in fullscreen mode
+
+map.on('fullscreenchange', function () {
+    if (map.isFullscreen()) {
+        buttonPrintPng.addTo(map);
+        buttonPrintPdf.addTo(map);
+    } else {
+        map.removeControl(buttonPrintPng);
+        map.removeControl(buttonPrintPdf);
+    }
+});
 
 //
 // Charts in Leaflet Popup
@@ -1059,7 +1381,7 @@ function createChart(id, div_postfix){
   $.ajax({
       type: 'GET',
       url: url,
-      async: false,
+      async: true,
       contentType: "application/json",
       dataType: 'json',
       success: function (data) {
@@ -1080,59 +1402,59 @@ function createChart(id, div_postfix){
         chartdata.push(data["ts_ly"]);
         chartdata.push(data["ts_ty"]);
         chartdata.push(data["ts_ty_last"]);
+
+        document.getElementById('chart_results' + div_postfix).innerHTML = 
+        '<div class="h-100" style="text-align: center;">\
+          <b style="color: red">-</b> Wassertemperatur Tagesmittel Heuer [°C] <span style="color: grey">|</span> <b style="color: #f99090">-</b> Wassertemperatur Tagesmittel Vorjahr [°C] <span style="color: grey">|</span> <span style="color: #00abe3">=</span> Langjährige Periode<br />\
+          ' + lt + '\
+          </div>\
+          <div class="mt-2 small">\
+            <div class="row">\
+              <div class="col p-1">\
+                <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a1[0] + '; text-align: center; padding: 1em; margin: 0">\
+                  <b>Gestern</b><br />\
+                  <b style="color: ' + a1[5] + '">' + a1[4] + '</b>\
+                </div>\
+              </div>\
+              <div class="col p-1">\
+                <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a2[0] + '; text-align: center; padding: 1em;">\
+                  <b>Letzte 30 Tage</b><br />\
+                  <b style="color: ' + a2[5] + '">' + a2[4] + '</b>\
+                </div>\
+              </div>\
+              <div class="col p-1">\
+                <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a3[0] + '; text-align: center; padding: 1em;">\
+                  <b>' + monthNames[d_a3_1.getMonth()] + ' ' + d_a3_1.getFullYear().toString().substr(-2) + '</b><br />\
+                  <b style="color: ' + a3[5] + '">' + a3[4] + '</b>\
+                </div>\
+              </div>\
+              <div class="col p-1">\
+                <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a4[0] + '; text-align: center; padding: 1em;">\
+                  <b>' + monthNames[d_a4_1.getMonth()] + ' ' + d_a4_1.getFullYear().toString().substr(-2) + '</b><br />\
+                  <b style="color: ' + a4[5] + '">' + a4[4] + '</b>\
+                </div>\
+              </div>\
+              <div class="col p-1">\
+                <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a5[0] + '; text-align: center; padding: 1em;">\
+                  <b>Heuer</b><br />\
+                  <b style="color: ' + a5[5] + '">' + a5[4] + '</b>\
+                </div>\
+              </div>\
+              <div class="col p-1">\
+                <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a6[0] + '; text-align: center; padding: 1em;">\
+                  <b>Vorjahr</b><br />\
+                  <b style="color: ' + a6[5] + '">' + a6[4] + '</b>\
+                </div>\
+              </div>\
+            </div>\
+            <div class="h-100 text-secondary" style="text-align: right; font-size: 10px; margin-top: 5px;">\
+              Letzte Aktualisierung: ' + dt + '<br />\
+            </div>\
+          </div>'
+
+        new uPlot(opts, chartdata, document.getElementById("chart" + div_postfix));
       }
   });
-
-  document.getElementById('chart_results' + div_postfix).innerHTML = 
-  '<div class="h-100" style="text-align: center;">\
-    <b style="color: red">-</b> Wassertemperatur Tagesmittel Heuer [°C] <span style="color: grey">|</span> <b style="color: #f99090">-</b> Wassertemperatur Tagesmittel Vorjahr [°C] <span style="color: grey">|</span> <span style="color: #00abe3">=</span> Langjährige Periode<br />\
-    ' + lt + '\
-    </div>\
-    <div class="mt-2 small">\
-      <div class="row">\
-        <div class="col p-1">\
-          <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a1[0] + '; text-align: center; padding: 1em; margin: 0">\
-            <b>Gestern</b><br />\
-            <b style="color: ' + a1[5] + '">' + a1[4] + '</b>\
-          </div>\
-        </div>\
-        <div class="col p-1">\
-          <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a2[0] + '; text-align: center; padding: 1em;">\
-            <b>Letzte 30 Tage</b><br />\
-            <b style="color: ' + a2[5] + '">' + a2[4] + '</b>\
-          </div>\
-        </div>\
-        <div class="col p-1">\
-          <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a3[0] + '; text-align: center; padding: 1em;">\
-            <b>' + monthNames[d_a3_1.getMonth()] + ' ' + d_a3_1.getFullYear().toString().substr(-2) + '</b><br />\
-            <b style="color: ' + a3[5] + '">' + a3[4] + '</b>\
-          </div>\
-        </div>\
-        <div class="col p-1">\
-          <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a4[0] + '; text-align: center; padding: 1em;">\
-            <b>' + monthNames[d_a4_1.getMonth()] + ' ' + d_a4_1.getFullYear().toString().substr(-2) + '</b><br />\
-            <b style="color: ' + a4[5] + '">' + a4[4] + '</b>\
-          </div>\
-        </div>\
-        <div class="col p-1">\
-          <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a5[0] + '; text-align: center; padding: 1em;">\
-            <b>Heuer</b><br />\
-            <b style="color: ' + a5[5] + '">' + a5[4] + '</b>\
-          </div>\
-        </div>\
-        <div class="col p-1">\
-          <div style="border: 1px solid rgb(199, 199, 199); border-radius: 10px; background-color: ' + a6[0] + '; text-align: center; padding: 1em;">\
-            <b>Vorjahr</b><br />\
-            <b style="color: ' + a6[5] + '">' + a6[4] + '</b>\
-          </div>\
-        </div>\
-      </div>\
-      <div class="h-100 text-secondary" style="text-align: right; font-size: 10px; margin-top: 5px;">\
-        Letzte Aktualisierung: ' + dt + '<br />\
-      </div>\
-    </div>'
-
-  new uPlot(opts, chartdata, document.getElementById("chart" + div_postfix));
 } 
 
 // Chart options
@@ -1247,5 +1569,4 @@ function getOffset(lng, lat) {
 
   return [off_x, off_y];
 }
-
 </script>

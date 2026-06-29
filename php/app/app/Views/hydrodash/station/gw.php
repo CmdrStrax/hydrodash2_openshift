@@ -155,7 +155,7 @@ $my_a6 = get_col_station_groundwater($a6["val"], $a6["val_lt_min"], $a6["val_lt"
   $.ajax({
     type: 'GET',
     url: url,
-    async: false,
+    async: true,
     contentType: "application/json",
     dataType: 'json',
     success: function (data) {
@@ -168,113 +168,113 @@ $my_a6 = get_col_station_groundwater($a6["val"], $a6["val_lt_min"], $a6["val_lt"
       chartdata.push(data["ts_ly"]);
       chartdata.push(data["ts_ty"]);
       chartdata.push(data["ts_ty_last"]);
-    }
-  });
 
-  const opts = {
-    ...getSize(),
-    tzDate: ts => uPlot.tzDate(new Date(ts * 1e3), 'Etc/UTC'),
-    fmtDate: tpl => uPlot.fmtDate(tpl, ruNames),
-    legend: { show: true,  },
-    axes: [
-      {
-        space: (self, axisIdx, scaleMin, scaleMax, plotDim) => {
-          let rangeSecs = scaleMax - scaleMin;
-          let rangeDays = rangeSecs / 86400;
-          let pxPerDay = plotDim / rangeDays;
-          return pxPerDay * 28;
-        },
-      },
-      {
-        label: "Grundwasserabstich [m]",
-      },
-    ],
-    series: [
-      {          
-        name: "Tag",
-        label: "Tag",
-        value: "{DD}.{MM}.{YYYY}"
-      },
-      {
-        label: "Minimales Tagesmittel",
-        stroke: "#279EE6",
-        width: 0.5,
-        points: { 
-          show: false, 
-        } 
-      },
-      {
-        label: "Mittleres Tagesmittel",
-        stroke: "#279EE6",
-        width: 0.6,
-        points: { 
-          show: false, 
-        } 
-      },
-      {
-        label: "Maximales Tagesmittel",
-        stroke: "#279EE6",
-        width: 0.4,
-        points: { 
-          show: false, 
-        } 
-      },
-      {
-        label: "Gelaendeoberkante",
-        stroke: "#764d30",
-        width: 1.2,
-        points: { 
-          show: false, 
-        },
-        hideLegend: true,
-      },
-      {
-        label: "Tagesmittel <?php echo $last_year; ?>",
-        stroke: "#f76f6f",    
-        width: 1.2,
-      },
-      {
-        label: "Tagesmittel <?php echo $this_year; ?>",
-        stroke: "red",
-        width: 1.6,
-      },
-      {
-        stroke: "red",
-        width: 1.5,
-        points: { 
-          show: true, 
-        },
-        hideLegend: true,
-      },
-    ],
-    hooks: {
-      init: [
-        u => {
-          [...u.root.querySelectorAll('.u-legend .u-series')].forEach((el, i) => {
-            if (u.series[i].hideLegend) {
-              el.style.display = 'none';
+      const opts = {
+        ...getSize(),
+        tzDate: ts => uPlot.tzDate(new Date(ts * 1e3), 'Etc/UTC'),
+        fmtDate: tpl => uPlot.fmtDate(tpl, ruNames),
+        legend: { show: true,  },
+        axes: [
+          {
+            space: (self, axisIdx, scaleMin, scaleMax, plotDim) => {
+              let rangeSecs = scaleMax - scaleMin;
+              let rangeDays = rangeSecs / 86400;
+              let pxPerDay = plotDim / rangeDays;
+              return pxPerDay * 28;
+            },
+          },
+          {
+            label: "Grundwasserabstich [m]",
+          },
+        ],
+        series: [
+          {          
+            name: "Tag",
+            label: "Tag",
+            value: "{DD}.{MM}.{YYYY}"
+          },
+          {
+            label: "Minimales Tagesmittel",
+            stroke: "#279EE6",
+            width: 0.5,
+            points: { 
+              show: false, 
+            } 
+          },
+          {
+            label: "Mittleres Tagesmittel",
+            stroke: "#279EE6",
+            width: 0.6,
+            points: { 
+              show: false, 
+            } 
+          },
+          {
+            label: "Maximales Tagesmittel",
+            stroke: "#279EE6",
+            width: 0.4,
+            points: { 
+              show: false, 
+            } 
+          },
+          {
+            label: "Gelaendeoberkante",
+            stroke: "#764d30",
+            width: 1.2,
+            points: { 
+              show: false, 
+            },
+            hideLegend: true,
+          },
+          {
+            label: "Tagesmittel <?php echo $last_year; ?>",
+            stroke: "#f76f6f",    
+            width: 1.2,
+          },
+          {
+            label: "Tagesmittel <?php echo $this_year; ?>",
+            stroke: "red",
+            width: 1.6,
+          },
+          {
+            stroke: "red",
+            width: 1.5,
+            points: { 
+              show: true, 
+            },
+            hideLegend: true,
+          },
+        ],
+        hooks: {
+          init: [
+            u => {
+              [...u.root.querySelectorAll('.u-legend .u-series')].forEach((el, i) => {
+                if (u.series[i].hideLegend) {
+                  el.style.display = 'none';
+                }
+              });
             }
-          });
-        }
-      ]
-    },
-    bands: [
-      {
-        series: [1,2],
-        fill: "#CDEBF7",
-        dir: 1
-      },
-      {
-        series: [2,3],
-        fill: "#CDEBF7",
-        dir: 1
-      }
-    ],
-  };
+          ]
+        },
+        bands: [
+          {
+            series: [1,2],
+            fill: "#CDEBF7",
+            dir: 1
+          },
+          {
+            series: [2,3],
+            fill: "#CDEBF7",
+            dir: 1
+          }
+        ],
+      };
 
-  let u = new uPlot(opts, chartdata, document.getElementById("chart"));
+      let u = new uPlot(opts, chartdata, document.getElementById("chart"));
 
-  window.addEventListener("resize", e => {
-    u.setSize(getSize());
+      window.addEventListener("resize", e => {
+        u.setSize(getSize());
+      });
+    }
   });
 </script>
