@@ -1114,7 +1114,7 @@ async function saveAsImage(format) {
   if (format === 'pdf') {
     await result.toPdfImage({filename: dt_now_string_fn + '_hydrodash_map.pdf' });
   } else {
-    await result.download({ format: format, filename: dt_now_string_fn + '_hydrodash_map.png' });
+    await result.download({ format: format, filename: dt_now_string_fn + '_hydrodash_map.' + format });
   }
 
   // Reset map for standard use
