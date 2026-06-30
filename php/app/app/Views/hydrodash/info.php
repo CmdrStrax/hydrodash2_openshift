@@ -360,16 +360,15 @@
     <div class="card justify-content-center mt-3" id="gaps">
       <div class="card-header" style="background-color: #EBF2FA;">Versionslog</div>
       <div class="card-body">
-        <p><u>0.11</u><br /><small class="text-secondary">01.07.2026</small></p>
+        <p><u>v0.11</u><br /><small class="text-secondary">01.07.2026</small></p>
         <ul>
-            <li>Änderungen Geo-Layer</li>
-            <li>Ergänzung Exportfunktion</li>
-            <li>Fehlerausbesserungen div.</li>
+            <li>Ergänzung Exportfunktion für Übersichtskarten (SVG; PNG, PDF in Vollbild)</li>
+            <li>Anpassungen Geo-Layer</li>
+            <li>Behebung UI- und Darstellungsfehler</li>
         </ul>
-        <p><u>0.1</u><br /><small class="text-secondary">22.03.2026</small></p>
+        <p><u>v0.10</u><br /><small class="text-secondary">22.03.2026<br />Erststand</small></p>
         <ul>
-            <li>Publizierung Erststand</li>
-            <li>Auswertung und Darstellung für die Parameter
+            <li>Initiale Publizierung des Dashboards für die Parameter
                 <ul>
                     <li>Abfluss</li>
                     <li>Wassertemperatur</li>
