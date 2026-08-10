@@ -3,12 +3,12 @@ helper('text');
 $in_tz = new DateTimeZone('UTC');
 $out_tz = new DateTimeZone('Europe/Vienna');
 
-$my_a1 = get_col_station_discharge($a1["val"], $a1["val_lt"], $a1["from"], $a1["to"]); 
-$my_a2 = get_col_station_discharge($a2["val"], $a2["val_lt"], $a2["from"], $a2["to"]); 
-$my_a3 = get_col_station_discharge($a3["val"], $a3["val_lt"], $a3["from"], $a3["to"]); 
-$my_a4 = get_col_station_discharge($a4["val"], $a4["val_lt"], $a4["from"], $a4["to"]); 
-$my_a5 = get_col_station_discharge($a5["val"], $a5["val_lt"], $a5["from"], $a5["to"]); 
-$my_a6 = get_col_station_discharge($a6["val"], $a6["val_lt"], $a6["from"], $a6["to"]); 
+$my_a1 = get_col_station_springs($a1["val"], $a1["val_lt"], $a1["from"], $a1["to"]); 
+$my_a2 = get_col_station_springs($a2["val"], $a2["val_lt"], $a2["from"], $a2["to"]); 
+$my_a3 = get_col_station_springs($a3["val"], $a3["val_lt"], $a3["from"], $a3["to"]); 
+$my_a4 = get_col_station_springs($a4["val"], $a4["val_lt"], $a4["from"], $a4["to"]); 
+$my_a5 = get_col_station_springs($a5["val"], $a5["val_lt"], $a5["from"], $a5["to"]); 
+$my_a6 = get_col_station_springs($a6["val"], $a6["val_lt"], $a6["from"], $a6["to"]); 
 ?>
 
 <div class="flex-fill w-100 content">

@@ -34,8 +34,8 @@ $my_a6 = get_col_station_groundwater($a6["val"], $a6["val_lt_min"], $a6["val_lt"
             <p style="margin-bottom: 5px;"><b>Gestern</b><br />
             <?= esc($my_a1[2]) ?></p>
             <p style="margin-bottom: 5px;"><b style="color: <?= esc($my_a1[5]) ?>"><?php echo $my_a1[1]; ?></b></p>
-            <small style="color: <?= esc($my_a1[6]) ?>;">Tagesmittel <?php if ($a1['val'] != '') { echo '&#8709; ' . round($a1['val']*-1, 2) . ' m'; } else { echo '-'; } ?><br />
-            Lj. &#8595; <?= esc(round($a1['val_lt_max']*-1, 2)) ?>m | &#8709; <?= esc(round($a1['val_lt']*-1, 1)) ?>m | &#8593; <?= esc(round($a1['val_lt_min']*-1, 1)) ?>m<br />
+            <small style="color: <?= esc($my_a1[6]) ?>;">Tagesmittel <?php if ($a1['val'] != '') { echo '&#8709; ' . sprintf('%.2f', $a1['val']*-1) . ' m'; } else { echo '-'; } ?><br />
+            Lj. &#8595; <?= esc(sprintf('%.2f', $a1['val_lt_max']*-1)) ?> | &#8709; <?= esc(sprintf('%.2f', $a1['val_lt']*-1)) ?> | &#8593; <?= esc(sprintf('%.2f', $a1['val_lt_min']*-1)) ?><br />
             <b>Delta <?= esc($my_a1[4]) ?></b></small>
           </div>
         </div>
@@ -44,8 +44,8 @@ $my_a6 = get_col_station_groundwater($a6["val"], $a6["val_lt_min"], $a6["val_lt"
             <p style="margin-bottom: 5px;"><b>Letzte 30 Tage</b><br />
             <?= esc($my_a2[2]) ?> - <?= esc($my_a2[3]) ?></p>
             <p style="margin-bottom: 5px;"><b style="color: <?= esc($my_a2[5]) ?>"><?php echo $my_a2[1]; ?></b></p>
-            <small style="color: <?= esc($my_a2[6]) ?>;">Aktuell <?php if ($a2['val'] != '') { echo '&#8709; ' . round($a2['val']*-1, 2) . ' m'; } else { echo '-'; } ?><br />
-            Lj. &#8595; <?= esc(round($a2['val_lt_max']*-1, 2)) ?>m | &#8709; <?= esc(round($a2['val_lt']*-1, 1)) ?>m | &#8593; <?= esc(round($a2['val_lt_min']*-1, 1)) ?>m<br />
+            <small style="color: <?= esc($my_a2[6]) ?>;">Aktuell <?php if ($a2['val'] != '') { echo '&#8709; ' . sprintf('%.2f', $a2['val']*-1) . ' m'; } else { echo '-'; } ?><br />
+            Lj. &#8595; <?= esc(sprintf('%.2f', $a2['val_lt_max']*-1)) ?> | &#8709; <?= esc(sprintf('%.2f', $a2['val_lt']*-1)) ?> | &#8593; <?= esc(sprintf('%.2f', $a2['val_lt_min']*-1)) ?><br />
             <b>Delta <?= esc($my_a2[4]) ?></b></small>
           </div>
         </div>
@@ -54,8 +54,8 @@ $my_a6 = get_col_station_groundwater($a6["val"], $a6["val_lt_min"], $a6["val_lt"
             <p style="margin-bottom: 5px;"><b><?= esc($last_lastmonth_str); ?></b><br />
             <?= esc($my_a3[2]) ?> - <?= esc($my_a3[3]) ?></p>
             <p style="margin-bottom: 5px;"><b style="color: <?= esc($my_a3[5]) ?>"><?php echo $my_a3[1]; ?></b></p>
-            <small style="color: <?= esc($my_a3[6]) ?>;">Aktuell <?php if ($a3['val'] != '') { echo '&#8709; ' . round($a3['val']*-1, 2) . ' m'; } else { echo '-'; } ?><br />
-            Lj. &#8595; <?= esc(round($a3['val_lt_max']*-1, 2)) ?>m | &#8709; <?= esc(round($a3['val_lt']*-1, 1)) ?>m | &#8593; <?= esc(round($a3['val_lt_min']*-1, 1)) ?>m<br />
+            <small style="color: <?= esc($my_a3[6]) ?>;">Aktuell <?php if ($a3['val'] != '') { echo '&#8709; ' . sprintf('%.2f', $a3['val']*-1) . ' m'; } else { echo '-'; } ?><br />
+            Lj. &#8595; <?= esc(sprintf('%.2f', $a3['val_lt_max']*-1)) ?> | &#8709; <?= esc(sprintf('%.2f', $a3['val_lt']*-1)) ?> | &#8593; <?= esc(sprintf('%.2f', $a3['val_lt_min']*-1)) ?><br />
             <b>Delta <?= esc($my_a3[4]) ?></b></small>
           </div>
         </div>
@@ -64,8 +64,8 @@ $my_a6 = get_col_station_groundwater($a6["val"], $a6["val_lt_min"], $a6["val_lt"
             <p style="margin-bottom: 5px;"><b><?= esc($last_month_str); ?></b><br />
             <?= esc($my_a4[2]) ?> - <?= esc($my_a4[3]) ?></p>
             <p style="margin-bottom: 5px;"><b style="color: <?= esc($my_a4[5]) ?>"><?php echo $my_a4[1]; ?></b></p>
-            <small style="color: <?= esc($my_a4[6]) ?>;">Aktuell <?php if ($a4['val'] != '') { echo '&#8709; ' . round($a4['val']*-1, 2) . ' m'; } else { echo '-'; } ?><br />
-            Lj. &#8595; <?= esc(round($a4['val_lt_max']*-1, 2)) ?>m | &#8709; <?= esc(round($a4['val_lt']*-1, 1)) ?>m | &#8593; <?= esc(round($a4['val_lt_min']*-1, 1)) ?>m<br />
+            <small style="color: <?= esc($my_a4[6]) ?>;">Aktuell <?php if ($a4['val'] != '') { echo '&#8709; ' . sprintf('%.2f', $a4['val']*-1) . ' m'; } else { echo '-'; } ?><br />
+            Lj. &#8595; <?= esc(sprintf('%.2f', $a4['val_lt_max']*-1)) ?> | &#8709; <?= esc(sprintf('%.2f', $a4['val_lt']*-1)) ?> | &#8593; <?= esc(sprintf('%.2f', $a4['val_lt_min']*-1)) ?><br />
             <b>Delta <?= esc($my_a4[4]) ?></b></small>
           </div>
         </div>
@@ -74,8 +74,8 @@ $my_a6 = get_col_station_groundwater($a6["val"], $a6["val_lt_min"], $a6["val_lt"
             <p style="margin-bottom: 5px;"><b>Heuer</b><br />
             <?= esc($my_a5[2]) ?> - <?= esc($my_a5[3]) ?></p>
             <p style="margin-bottom: 5px;"><b style="color: <?= esc($my_a5[5]) ?>"><?php echo $my_a5[1]; ?></b></p>
-            <small style="color: <?= esc($my_a5[6]) ?>;">Aktuell <?php if ($a5['val'] != '') { echo '&#8709; ' . round($a5['val']*-1, 2) . ' m'; } else { echo '-'; } ?><br />
-            Lj. &#8595; <?= esc(round($a5['val_lt_max']*-1, 2)) ?>m | &#8709; <?= esc(round($a5['val_lt']*-1, 1)) ?>m | &#8593; <?= esc(round($a5['val_lt_min']*-1, 1)) ?>m<br />
+            <small style="color: <?= esc($my_a5[6]) ?>;">Aktuell <?php if ($a5['val'] != '') { echo '&#8709; ' . sprintf('%.2f', $a5['val']*-1) . ' m'; } else { echo '-'; } ?><br />
+            Lj. &#8595; <?= esc(sprintf('%.2f', $a5['val_lt_max']*-1)) ?> | &#8709; <?= esc(sprintf('%.2f', $a5['val_lt']*-1)) ?> | &#8593; <?= esc(sprintf('%.2f', $a5['val_lt_min']*-1)) ?><br />
             <b>Delta <?= esc($my_a5[4]) ?></b></small>
           </div>
         </div>
@@ -84,8 +84,8 @@ $my_a6 = get_col_station_groundwater($a6["val"], $a6["val_lt_min"], $a6["val_lt"
             <p style="margin-bottom: 5px;"><b>Vorjahr</b><br />
             <?= esc($my_a6[2]) ?> - <?= esc($my_a6[3]) ?></p>
             <p style="margin-bottom: 5px;"><b style="color: <?= esc($my_a6[5]) ?>"><?php echo $my_a6[1]; ?></b></p>
-            <small style="color: <?= esc($my_a6[6]) ?>;">Aktuell <?php if ($a6['val'] != '') { echo '&#8709; ' . round($a6['val']*-1, 2) . ' m'; } else { echo '-'; } ?><br />
-            Lj. &#8595; <?= esc(round($a6['val_lt_max']*-1, 2)) ?>m | &#8709; <?= esc(round($a6['val_lt']*-1, 1)) ?>m | &#8593; <?= esc(round($a6['val_lt_min']*-1, 1)) ?>m<br />
+            <small style="color: <?= esc($my_a6[6]) ?>;">Aktuell <?php if ($a6['val'] != '') { echo '&#8709; ' . sprintf('%.2f', $a6['val']*-1) . ' m'; } else { echo '-'; } ?><br />
+            Lj. &#8595; <?= esc(sprintf('%.2f', $a6['val_lt_max']*-1)) ?> | &#8709; <?= esc(sprintf('%.2f', $a6['val_lt']*-1)) ?> | &#8593; <?= esc(sprintf('%.2f', $a6['val_lt_min']*-1)) ?><br />
             <b>Delta <?= esc($my_a6[4]) ?></b></small>
           </div>      
         </div>
