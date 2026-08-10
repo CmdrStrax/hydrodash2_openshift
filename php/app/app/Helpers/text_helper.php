@@ -212,19 +212,19 @@ function get_col_table_discharge($val, $val_lt) {
     //
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
     } else {
-        $v_str = '- ' . $v*-1 .  ' %';
+        $v_str = '-' . $v*-1 .  ' %';
     }
 
     if ($d > 0) {
-        $d_str = '+ ' . get_q_round($d) . ' m³/s';
+        $d_str = '+' . get_q_round($d) . ' m³/s';
     } elseif ($d == 0) {
         $d_str = '+/- 0 m³/s';
     } else {
-        $d_str = '- ' . get_q_round($d*-1) . ' m³/s';
+        $d_str = '-' . get_q_round($d*-1) . ' m³/s';
     }
 
     return [$col, $v_str, $d_str, $svg]; 
@@ -260,13 +260,13 @@ function get_col_station_discharge($val, $val_lt, $dt_from, $dt_to) {
     $my_dt_to = (new DateTime($dt_to))->format('d.m.Y');
     
     if ($d > 0) {
-        $my_val = '+ ' . get_q_round($d) . " m³/s";
+        $my_val = '+' . get_q_round($d) . " m³/s";
         $my_text_col = '#fa6a05';
     } elseif ($d == 0) {
         $my_val = "+/- 0 m³/s";
         $my_text_col = '#000';
     } else {
-        $my_val = '- ' . get_q_round($d*-1) . " m³/s";
+        $my_val = '-' . get_q_round($d*-1) . " m³/s";
         $my_text_col = '#003d80';
     }
 
@@ -316,12 +316,12 @@ function get_col_station_discharge($val, $val_lt, $dt_from, $dt_to) {
     }
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
         $my_text_col = '#5d5d5dff';
     } else {
-        $v_str = '- ' . $v*-1 . ' %';
+        $v_str = '-' . $v*-1 . ' %';
     } 
 
     return [$col, $v_str, $my_dt_from, $my_dt_to, $my_val, $my_text_col, $my_text_col_light]; 
@@ -413,19 +413,19 @@ function get_col_table_watertemp($val, $val_lt) {
     //
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' % in K';
+        $v_str = '+' . $v .  ' % in K';
     } elseif ($v == 0) {
         $v_str = '+/- 0 % in K';
     } else {
-        $v_str = '- ' . $v*-1 .  ' % in K';
+        $v_str = '-' . $v*-1 .  ' % in K';
     }
 
     if ($d > 0) {
-        $d_str = '+ ' . round($d,1) . ' °C';
+        $d_str = '+' . round($d,1) . ' °C';
     } elseif ($d == 0) {
         $d_str = '+/- 0 °C';
     } else {
-        $d_str = '- ' . round($d*-1,1) . ' °C';
+        $d_str = '-' . round($d*-1,1) . ' °C';
     }
 
     return [$col, $v_str, $d_str, $svg]; 
@@ -464,13 +464,13 @@ function get_col_station_watertemp($val, $val_lt, $dt_from, $dt_to) {
     $my_dt_to = (new DateTime($dt_to))->format('d.m.Y');
     
     if ($d > 0.1) {
-        $my_val = '+ ' . round($d, 1) . " °C";
+        $my_val = '+' . round($d, 1) . " °C";
         $my_text_col = '#fa6a05';
     } elseif ($d >= -0.1) {
         $my_val = "+/- 0 °C";
         $my_text_col = '#000';
     } else {
-        $my_val = '- ' . round($d*-1, 1) . " °C";
+        $my_val = '-' . round($d*-1, 1) . " °C";
         $my_text_col = '#003d80';
     }
 
@@ -525,12 +525,12 @@ function get_col_station_watertemp($val, $val_lt, $dt_from, $dt_to) {
     }
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
         $my_text_col = '#5d5d5dff';
     } else {
-        $v_str = '- ' . $v*-1 . ' %';
+        $v_str = '-' . $v*-1 . ' %';
     } 
 
     return [$col, $v_str, $my_dt_from, $my_dt_to, $my_val, $my_text_col, $my_text_col_light]; 
@@ -617,19 +617,19 @@ function get_col_table_precip($val, $val_lt) {
     //
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
     } else {
-        $v_str = '- ' . $v*-1 .  ' %';
+        $v_str = '-' . $v*-1 .  ' %';
     }
 
     if ($d > 0) {
-        $d_str = '+ ' . get_q_round($d) . ' mm';
+        $d_str = '+' . get_q_round($d) . ' mm';
     } elseif ($d == 0) {
         $d_str = '+/- 0 mm';
     } else {
-        $d_str = '- ' . get_q_round($d*-1) . ' mm';
+        $d_str = '-' . get_q_round($d*-1) . ' mm';
     }
 
     return [$col, $v_str, $d_str, $svg]; 
@@ -665,13 +665,13 @@ function get_col_station_precip($val, $val_lt, $dt_from, $dt_to) {
     $my_dt_to = (new DateTime($dt_to))->format('d.m.Y');
     
     if ($d > 0) {
-        $my_val = '+ ' . get_q_round($d) . " mm";
+        $my_val = '+' . get_q_round($d) . " mm";
         $my_text_col = '#fa6a05';
     } elseif ($d == 0) {
         $my_val = "+/- 0 mm";
         $my_text_col = '#000';
     } else {
-        $my_val = '- ' . get_q_round($d*-1) . " mm";
+        $my_val = '-' . get_q_round($d*-1) . " mm";
         $my_text_col = '#003d80';
     }
 
@@ -721,12 +721,12 @@ function get_col_station_precip($val, $val_lt, $dt_from, $dt_to) {
     }
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
         $my_text_col = '#5d5d5dff';
     } else {
-        $v_str = '- ' . $v*-1 . ' %';
+        $v_str = '-' . $v*-1 . ' %';
     } 
 
     return [$col, $v_str, $my_dt_from, $my_dt_to, $my_val, $my_text_col, $my_text_col_light]; 
@@ -818,19 +818,19 @@ function get_col_table_airtemp($val, $val_lt) {
     //
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' % in K';
+        $v_str = '+' . $v .  ' % in K';
     } elseif ($v == 0) {
         $v_str = '+/- 0 % in K';
     } else {
-        $v_str = '- ' . $v*-1 .  ' % in K';
+        $v_str = '-' . $v*-1 .  ' % in K';
     }
 
     if ($d > 0) {
-        $d_str = '+ ' . round($d,1) . ' °C';
+        $d_str = '+' . round($d,1) . ' °C';
     } elseif ($d == 0) {
         $d_str = '+/- 0 °C';
     } else {
-        $d_str = '- ' . round($d*-1,1) . ' °C';
+        $d_str = '-' . round($d*-1,1) . ' °C';
     }
 
     return [$col, $v_str, $d_str, $svg]; 
@@ -869,13 +869,13 @@ function get_col_station_airtemp($val, $val_lt, $dt_from, $dt_to) {
     $my_dt_to = (new DateTime($dt_to))->format('d.m.Y');
     
     if ($d > 0.1) {
-        $my_val = '+ ' . round($d, 1) . " °C";
+        $my_val = '+' . round($d, 1) . " °C";
         $my_text_col = '#fa6a05';
     } elseif ($d >= -0.1) {
         $my_val = "+/- 0 °C";
         $my_text_col = '#000';
     } else {
-        $my_val = '- ' . round($d*-1, 1) . " °C";
+        $my_val = '-' . round($d*-1, 1) . " °C";
         $my_text_col = '#003d80';
     }
 
@@ -930,12 +930,12 @@ function get_col_station_airtemp($val, $val_lt, $dt_from, $dt_to) {
     }
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
         $my_text_col = '#5d5d5dff';
     } else {
-        $v_str = '- ' . $v*-1 . ' %';
+        $v_str = '-' . $v*-1 . ' %';
     } 
 
     return [$col, $v_str, $my_dt_from, $my_dt_to, $my_val, $my_text_col, $my_text_col_light]; 
@@ -1038,19 +1038,19 @@ function get_col_table_groundwater($val, $val_lt_min, $val_lt_mean, $val_lt_max)
     //
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
     } else {
-        $v_str = '- ' . $v*-1 .  ' %';
+        $v_str = '-' . $v*-1 .  ' %';
     }
 
     if ($d > 0) {
-        $d_str = '+ ' . round($d, 2) . ' m';
+        $d_str = '+' . round($d, 2) . ' m';
     } elseif ($d == 0) {
         $d_str = '+/- 0 m';
     } else {
-        $d_str = '- ' . round($d*-1, 2) . ' m';
+        $d_str = '-' . round($d*-1, 2) . ' m';
     }
 
     return [$col, $v_str, $d_str, $svg]; 
@@ -1086,13 +1086,13 @@ function get_col_station_groundwater($val, $val_lt_min, $val_lt_mean, $val_lt_ma
     $my_dt_to = (new DateTime($dt_to))->format('d.m.Y');
     
     if ($d > 0) {
-        $my_val = '+ ' . round($d, 2) . " m";
+        $my_val = '+' . sprintf('%.2f', $d) . " m";
         $my_text_col = '#fa6a05';
     } elseif ($d == 0) {
         $my_val = "+/- 0 m";
         $my_text_col = '#000';
     } else {
-        $my_val = '- ' . round($d*-1, 2) . " m";
+        $my_val = '-' . sprintf('%.2f', $d*-1) . " m";
         $my_text_col = '#003d80';
     }
 
@@ -1158,12 +1158,12 @@ function get_col_station_groundwater($val, $val_lt_min, $val_lt_mean, $val_lt_ma
     }
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
         $my_text_col = '#5d5d5dff';
     } else {
-        $v_str = '- ' . $v*-1 . ' %';
+        $v_str = '-' . $v*-1 . ' %';
     } 
 
     return [$col, $v_str, $my_dt_from, $my_dt_to, $my_val, $my_text_col, $my_text_col_light]; 
@@ -1251,19 +1251,19 @@ function get_col_table_springs($val, $val_lt) {
     //
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
     } else {
-        $v_str = '- ' . $v*-1 .  ' %';
+        $v_str = '-' . $v*-1 .  ' %';
     }
 
     if ($d > 0) {
-        $d_str = '+ ' . get_q_round($d) . ' l/s';
+        $d_str = '+' . get_q_round($d) . ' l/s';
     } elseif ($d == 0) {
         $d_str = '+/- 0 l/s';
     } else {
-        $d_str = '- ' . get_q_round($d*-1) . ' l/s';
+        $d_str = '-' . get_q_round($d*-1) . ' l/s';
     }
 
     return [$col, $v_str, $d_str, $svg]; 
@@ -1299,13 +1299,13 @@ function get_col_station_springs($val, $val_lt, $dt_from, $dt_to) {
     $my_dt_to = (new DateTime($dt_to))->format('d.m.Y');
     
     if ($d > 0) {
-        $my_val = '+ ' . get_q_round($d) . " l/s";
+        $my_val = '+' . get_q_round($d) . " l/s";
         $my_text_col = '#fa6a05';
     } elseif ($d == 0) {
         $my_val = "+/- 0 l/s";
         $my_text_col = '#000';
     } else {
-        $my_val = '- ' . get_q_round($d*-1) . " l/s";
+        $my_val = '-' . get_q_round($d*-1) . " l/s";
         $my_text_col = '#003d80';
     }
 
@@ -1355,12 +1355,12 @@ function get_col_station_springs($val, $val_lt, $dt_from, $dt_to) {
     }
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
         $my_text_col = '#5d5d5dff';
     } else {
-        $v_str = '- ' . $v*-1 . ' %';
+        $v_str = '-' . $v*-1 . ' %';
     } 
 
     return [$col, $v_str, $my_dt_from, $my_dt_to, $my_val, $my_text_col, $my_text_col_light]; 
@@ -1420,19 +1420,19 @@ function get_col_table_temperature($val, $val_lt, $dt=false) {
     } 
 
     if ($v > 0) {
-        $v_str = '+ ' . $v .  ' %';
+        $v_str = '+' . $v .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
     } else {
-        $v_str = '- ' . $v*-1 .  ' %';
+        $v_str = '-' . $v*-1 .  ' %';
     }
 
     if ($d > 0) {
-        $d_str = '+ ' . round($d, 1) . ' °C';
+        $d_str = '+' . round($d, 1) . ' °C';
     } elseif ($d == 0) {
         $d_str = '+/- 0 °C';
     } else {
-        $d_str = '- ' . round($d*-1, 1) . ' °C';
+        $d_str = '-' . round($d*-1, 1) . ' °C';
     }
 
     return [$col, $v_str, $d_str, $svg]; 
@@ -1518,11 +1518,11 @@ function get_col_station($val, $val_lt, $dt_from, $dt_to) {
     }
 
     if ($v > 0) {
-        $v_str = '+ ' . round($v, 1) .  ' %';
+        $v_str = '+' . round($v, 1) .  ' %';
     } elseif ($v == 0) {
         $v_str = '+/- 0 %';
     } else {
-        $v_str = '- ' . round($v, 1)*-1 .  ' %';
+        $v_str = '-' . round($v, 1)*-1 .  ' %';
     } 
 
     return [$col, $v_str, $my_dt_from, $my_dt_to, $my_val, $my_text_col, $my_text_col_light]; 
@@ -1560,10 +1560,10 @@ function append_sign($v, $r, $sym) {
     $v = round($v, $r);
 
     if ($v > 0) {
-        return '+ ' . $v . ' ' . $sym;
+        return '+' . $v . ' ' . $sym;
     } elseif ($v == 0) {
         return '+/- 0 ' . $sym;
     } else {
-        return '- ' . $v*-1 . ' ' . $sym;
+        return '-' . $v*-1 . ' ' . $sym;
     } 
 }
