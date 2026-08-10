@@ -360,6 +360,14 @@
     <div class="card justify-content-center mt-3" id="gaps">
       <div class="card-header" style="background-color: #EBF2FA;">Versionslog</div>
       <div class="card-body">
+        <p><u>v0.12</u><br /><small class="text-secondary">10.08.2026</small></p>
+        <ul>
+            <li>Kleine Korrekturen</li>
+            <ul>
+                <li>Grundwasser: Präzision Kommastellen für Flurabstand</li>
+                <li>Quellen: Ausbesserung Einheitsangabe</li>
+            </ul>
+        </ul>
         <p><u>v0.11</u><br /><small class="text-secondary">01.07.2026</small></p>
         <ul>
             <li>Ergänzung Exportfunktion für Übersichtskarten (SVG; PNG, PDF in Vollbild)</li>
